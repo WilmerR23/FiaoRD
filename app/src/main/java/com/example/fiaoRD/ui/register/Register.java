@@ -2,6 +2,7 @@ package com.example.fiaoRD.ui.register;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fiaoRD.Firebase;
 import com.example.fiaoRD.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRD.R;
 import com.example.fiaoRD.ui.login.LoginFragment;
@@ -64,6 +66,7 @@ public class Register extends Fragment implements View.OnClickListener {
         btnRegistro.setOnClickListener(this);
         txtIniciaSesion.setOnClickListener(this);
 
+
         return v;
     }
 
@@ -89,26 +92,34 @@ public class Register extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnRegistro:
-                RegisterViewModel vm = new RegisterViewModel();
-                if(validarDatos()) {
-                    if (txtClave.getText().toString() == txtConfirmarClave.getText().toString()) {
-                        vm.Nombre = txtNombre.getText().toString();
-                        vm.Apellido = txtApellido.getText().toString();
-                        vm.Cedula = txtCedula.getText().toString();
-                        vm.Telefono = txtTelefono.getText().toString();
-                        vm.Direccion = txtDireccion.getText().toString();
-                        vm.Correo = txtCorreo.getText().toString();
-                        vm.Clave = txtClave.getText().toString();
+                try {
+                    if(validarDatos()) {
+                        if (txtClave.getText().toString().equals(txtConfirmarClave.getText().toString())) {
 
+                            RegisterViewModel vm = new RegisterViewModel(
+                                    txtNombre.getText().toString(),
+                                    txtApellido.getText().toString(),
+                                    txtCedula.getText().toString(),
+                                    txtTelefono.getText().toString(),
+                                    txtDireccion.getText().toString(),
+                                    txtCorreo.getText().toString(),
+                                    txtClave.getText().toString()
+                            );
 
+                            String cadena = mListener.Save(vm, vm.getCorreo(), "Usuarios", "Usuario registrado con exito.");
 
+                            mListener.onCallFragment(LoginFragment.newInstance());
+                            mListener.onMakeToast(cadena, Toast.LENGTH_SHORT);
+
+                        } else {
+                            mListener.onMakeToast("Las contraseñas no coinciden.", Toast.LENGTH_SHORT);
+                        }
                     } else {
-                        mListener.onMakeToast("Las contraseñas no coinciden.", Toast.LENGTH_SHORT);
+                        mListener.onMakeToast("Debe completar todos los campos", Toast.LENGTH_SHORT);
                     }
-                } else {
-                    mListener.onMakeToast("Debe completar todos los campos", Toast.LENGTH_SHORT);
+                } catch (Exception ex) {
+                    mListener.onMakeToast("Ha ocurrido un error: " + ex.getMessage(), Toast.LENGTH_LONG);
                 }
-
                 break;
 
             case R.id.txtIniciaSesion:

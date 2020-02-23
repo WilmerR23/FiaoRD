@@ -1,4 +1,4 @@
-package com.example.fiaoRD.ui.home;
+package com.example.fiaord.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
