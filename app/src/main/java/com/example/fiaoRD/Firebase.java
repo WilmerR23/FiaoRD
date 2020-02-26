@@ -3,6 +3,7 @@ package com.example.fiaoRD;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fiaoRD.Interfaces.OnFragmentInteractionListener;
@@ -55,5 +56,16 @@ public class Firebase {
                     String error = databaseError.getMessage();
             }
         });
+    }
+
+
+    public String UpdateKey(String id, String parent, String key, Object value, @Nullable final String mensaje) {
+        getInstance().child(parent).child(Utility.encodeForFirebaseKey(id)).child(key).setValue(value, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                CadenaOutput = databaseError != null ? "Ha ocurrido un error: " + databaseError.getMessage() : mensaje;
+            }
+        });
+        return CadenaOutput;
     }
 }

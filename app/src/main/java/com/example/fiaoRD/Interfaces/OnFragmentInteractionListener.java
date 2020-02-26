@@ -10,4 +10,5 @@ public interface OnFragmentInteractionListener {
     void Obtener(String id, String child, Class clase, OnFragmentListener listener);
     void onDataFound(Object obj, OnFragmentListener listener);
     void onCallIntent(Class clase);
+    String UpdateKey(String parent,String key, Object value, String mensaje);
 }

@@ -21,30 +21,19 @@ import android.widget.Toast;
 import com.example.fiaoRD.Firebase;
 import com.example.fiaoRD.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRD.R;
+import com.example.fiaoRD.ui.BaseFragment;
 import com.example.fiaoRD.ui.login.LoginFragment;
 
 
-public class Register extends Fragment implements View.OnClickListener {
+public class Register extends BaseFragment implements View.OnClickListener {
 
     private RegisterViewModel mViewModel;
-    private OnFragmentInteractionListener mListener;
     private EditText txtNombre, txtApellido, txtCedula, txtTelefono, txtDireccion, txtCorreo, txtClave, txtConfirmarClave;
     private Button btnRegistro;
     private TextView txtIniciaSesion;
 
     public static Register newInstance() {
         return new Register();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
@@ -103,7 +92,8 @@ public class Register extends Fragment implements View.OnClickListener {
                                     txtTelefono.getText().toString(),
                                     txtDireccion.getText().toString(),
                                     txtCorreo.getText().toString(),
-                                    txtClave.getText().toString()
+                                    txtClave.getText().toString(),
+                                    true
                             );
 
                             String cadena = mListener.Save(vm, vm.getCorreo(), "Usuarios", "Usuario registrado con exito.");

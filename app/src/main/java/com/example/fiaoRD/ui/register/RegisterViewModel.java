@@ -12,6 +12,7 @@ public class RegisterViewModel extends ViewModel {
     private String Direccion;
     private String Correo;
     private String Clave;
+    private boolean primerIngreso;
 
     public RegisterViewModel() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -38,6 +39,9 @@ public class RegisterViewModel extends ViewModel {
     public String getDireccion() {
         return this.Direccion;
     }
+    public boolean getPrimerIngreso() {
+        return this.primerIngreso;
+    }
 
     public void setCorreo(String Correo) { this.Correo = Correo; }
     public void setNombre(String Nombre) { this.Nombre = Nombre; }
@@ -46,8 +50,9 @@ public class RegisterViewModel extends ViewModel {
     public void setTelefono(String Telefono) { this.Telefono = Telefono; }
     public void setClave(String Clave) { this.Clave = Clave; }
     public void setDireccion(String Direccion) { this.Direccion = Direccion; }
+    public void setPrimerIngreso(boolean primerIngreso) { this.primerIngreso = primerIngreso; }
 
-    public RegisterViewModel(String Nombre, String Apellido, String Cedula, String Telefono, String Direcicon, String Correo, String Clave) {
+    public RegisterViewModel(String Nombre, String Apellido, String Cedula, String Telefono, String Direcicon, String Correo, String Clave, boolean primerIngreso) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Cedula = Cedula;
@@ -55,6 +60,7 @@ public class RegisterViewModel extends ViewModel {
         this.Direccion = Direcicon;
         this.Correo = Correo;
         this.Clave = Clave;
+        this.primerIngreso = primerIngreso;
     }
 
 

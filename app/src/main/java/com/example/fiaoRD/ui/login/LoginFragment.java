@@ -22,29 +22,20 @@ import com.example.fiaoRD.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRD.Interfaces.OnFragmentListener;
 import com.example.fiaoRD.MainActivity;
 import com.example.fiaoRD.R;
+import com.example.fiaoRD.ui.BaseFragment;
+import com.example.fiaoRD.ui.TipoUsuario.TipoUsuario;
+import com.example.fiaoRD.ui.Utility;
 import com.example.fiaoRD.ui.register.Register;
 import com.example.fiaoRD.ui.register.RegisterViewModel;
 
-public class LoginFragment extends Fragment implements View.OnClickListener, OnFragmentListener {
+public class LoginFragment extends BaseFragment implements View.OnClickListener, OnFragmentListener {
 
     private LoginViewModel mViewModel;
     private TextView txtRegistrarse;
     private EditText txtCorreo, txtClave;
-    private OnFragmentInteractionListener mListener;
     private Button btnIniciarSesion;
     public static LoginFragment newInstance() {
         return new LoginFragment();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Nullable
@@ -76,7 +67,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, OnF
         switch (v.getId()) {
             case R.id.btnIniciaSesion:
                 if (txtClave.getText().toString().length() > 0 && txtCorreo.getText().toString().length() > 0) {
-                    mListener.Obtener(txtCorreo.getText().toString(),"Usuarios", RegisterViewModel.class, this);
+                    mListener.Obtener(Utility.encodeForFirebaseKey(txtCorreo.getText().toString()),"Usuarios", RegisterViewModel.class, this);
                 }
                 break;
             case R.id.txtRegistrate:
@@ -90,7 +81,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener, OnF
         RegisterViewModel vm = (RegisterViewModel) obj;
 
         if (vm.getClave().equals(txtClave.getText().toString())) {
-            mListener.onCallIntent(MainActivity.class);
+           if (vm.getPrimerIngreso()) {
+               mListener.onCallFragment(TipoUsuario.newInstance());
+           } else {
+               mListener.onCallIntent(MainActivity.class);
+           }
         }
     }
 }
