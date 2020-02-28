@@ -22,6 +22,7 @@ import com.example.fiaoRD.Firebase;
 import com.example.fiaoRD.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRD.R;
 import com.example.fiaoRD.ui.BaseFragment;
+import com.example.fiaoRD.ui.Utility;
 import com.example.fiaoRD.ui.login.LoginFragment;
 
 
@@ -96,7 +97,7 @@ public class Register extends BaseFragment implements View.OnClickListener {
                                     true
                             );
 
-                            String cadena = mListener.Save(vm, vm.getCorreo(), "Usuarios", "Usuario registrado con exito.");
+                            String cadena = mListener.Save(vm, Utility.encodeForFirebaseKey(vm.getCorreo()), "Usuarios", "Usuario registrado con exito.");
 
                             mListener.onCallFragment(LoginFragment.newInstance());
                             mListener.onMakeToast(cadena, Toast.LENGTH_SHORT);

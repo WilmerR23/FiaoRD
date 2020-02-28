@@ -28,12 +28,15 @@ import com.example.fiaoRD.ui.Utility;
 import com.example.fiaoRD.ui.register.Register;
 import com.example.fiaoRD.ui.register.RegisterViewModel;
 
-public class LoginFragment extends BaseFragment implements View.OnClickListener, OnFragmentListener {
+import java.util.List;
 
-    private LoginViewModel mViewModel;
+public class LoginFragment extends BaseFragment implements View.OnClickListener {
+
+    private RegisterViewModel vm;
     private TextView txtRegistrarse;
     private EditText txtCorreo, txtClave;
     private Button btnIniciarSesion;
+    public static String id = "";
     public static LoginFragment newInstance() {
         return new LoginFragment();
     }
@@ -58,7 +61,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -78,14 +80,25 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void receiveData(Object obj) {
-        RegisterViewModel vm = (RegisterViewModel) obj;
+        vm = (RegisterViewModel) obj;
 
         if (vm.getClave().equals(txtClave.getText().toString())) {
+            id = Utility.encodeForFirebaseKey(vm.getCorreo());
            if (vm.getPrimerIngreso()) {
                mListener.onCallFragment(TipoUsuario.newInstance());
            } else {
                mListener.onCallIntent(MainActivity.class);
            }
         }
+    }
+
+    @Override
+    public void receiveDataTodos(List<Object> obj) {
+
+    }
+
+    @Override
+    public void receiveChildrenCount(int count) {
+
     }
 }

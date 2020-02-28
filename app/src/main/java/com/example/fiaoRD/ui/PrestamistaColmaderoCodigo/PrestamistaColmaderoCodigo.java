@@ -14,9 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.fiaoRD.Firebase;
 import com.example.fiaoRD.MainActivity;
 import com.example.fiaoRD.R;
 import com.example.fiaoRD.ui.BaseFragment;
+import com.example.fiaoRD.ui.PrestamistaAsignacionCodigo.PrestamistaAsignacionCodigo;
+import com.example.fiaoRD.ui.PrestamistaAsignacionCodigo.PrestamistaAsignacionCodigoViewModel;
+import com.example.fiaoRD.ui.login.LoginFragment;
+
+import java.util.ArrayList;
 
 public class PrestamistaColmaderoCodigo extends BaseFragment {
 
@@ -39,8 +45,9 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
             @Override
             public void onClick(View view) {
                 if (edCodigo.getText().toString().length() >= 4) {
-                   String msj = mListener.UpdateKey("Usuarios","primerIngreso", false, null);
-                    mListener.onCallIntent(MainActivity.class);
+                    _Firebase = new Firebase();
+                    _Firebase.ObtenerPorFiltro("codigo",edCodigo.getText().toString(),"CodigoUsuarioPrestamista",
+                            PrestamistaAsignacionCodigoViewModel.class,PrestamistaColmaderoCodigo.this);
                 } else {
                     mListener.onMakeToast("Debes ingresar un codigo valido de 4 digitos", Toast.LENGTH_SHORT);
                 }
@@ -48,6 +55,21 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
         });
         return v;
     }
+
+    @Override
+    public void receiveObtenerPorFiltroData(Object obj) {
+       if (obj != null) {
+           ArrayList lista = new ArrayList();
+           lista.add("Usuarios");
+           lista.add(LoginFragment.id);
+            String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
+            mListener.onCallIntent(MainActivity.class);
+        } else {
+            mListener.onMakeToast("Este codigo no existe.", Toast.LENGTH_SHORT);
+        }
+    }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

@@ -12,29 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.fiaoRD.Interfaces.OnFragmentListener;
+import com.example.fiaoRD.MainActivity;
 import com.example.fiaoRD.R;
 import com.example.fiaoRD.ui.BaseFragment;
+import com.example.fiaoRD.ui.PrestamistaAsignacionCodigo.PrestamistaAsignacionCodigo;
 import com.example.fiaoRD.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigo;
+import com.example.fiaoRD.ui.Utility;
 
-public class TipoUsuario extends BaseFragment implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TipoUsuario extends BaseFragment implements View.OnClickListener, OnFragmentListener {
 
     private TipoUsuarioViewModel mViewModel;
-    private Button btnColmadero, btnPrestamista, btnCliente;
+    private Button btnColmadero, btnCliente;
 
-    public static TipoUsuario newInstance() {
-        return new TipoUsuario();
-    }
+    public static TipoUsuario newInstance() { return new TipoUsuario(); }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tipo_usuario_fragment, container, false);
         btnCliente = v.findViewById(R.id.btnCliente);
-      //  btnPrestamista = v.findViewById(R.id.btnPrestamista);
         btnColmadero = v.findViewById(R.id.btnColmadero);
 
         btnCliente.setOnClickListener(this);
-      //  btnPrestamista.setOnClickListener(this);
         btnColmadero.setOnClickListener(this);
         return v;
     }
@@ -54,11 +57,13 @@ public class TipoUsuario extends BaseFragment implements View.OnClickListener {
                 mListener.onCallFragment(PrestamistaColmaderoCodigo.newInstance());
                 break;
             case R.id.btnColmadero:
-
+                mListener.onCallFragment(PrestamistaAsignacionCodigo.newInstance());
                 break;
-         //   case R.id.btnPrestamista:
-
-          //      break;
         }
+    }
+
+    @Override
+    public void receiveChildrenCount(int count) {
+
     }
 }

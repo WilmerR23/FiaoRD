@@ -2,7 +2,9 @@ package com.example.fiaoRD.ui.register;
 
 import androidx.lifecycle.ViewModel;
 
-public class RegisterViewModel extends ViewModel {
+import com.example.fiaoRD.Models.BaseModel;
+
+public class RegisterViewModel extends BaseModel {
     // TODO: Implement the ViewModel
 
     private String Nombre;
