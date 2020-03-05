@@ -1,13 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.cliente.ClienteFragment">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/user_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/user_icon"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Nombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_icon"
+            android:id="@+id/txtNombre"
+            android:layout_marginTop="10dp"
+        />
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        android:id="@+id/txtDireccion"
+        android:layout_marginTop="10dp"
+        />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Direccion"
+        android:id="@+id/txtDireccionData"
+        app:layout_constraintEnd_toStartOf="@id/txtCorreoData"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
+        android:layout_marginTop="7dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo electronico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtDireccion"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        android:id="@+id/txtCorreo"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/txtDireccionData"
+        android:text="Correo electronico"
+        android:id="@+id/txtCorreoData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+        android:layout_marginTop="7dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtCedula"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionData"
+        android:id="@+id/txtTelefono"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtCedulaData"
+        android:id="@+id/txtTelefonoData"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        android:layout_marginTop="7dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cedula"
+        app:layout_constraintStart_toEndOf="@id/txtTelefono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreoData"
+        android:id="@+id/txtCedula"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cedula"
+        app:layout_constraintStart_toEndOf="@id/txtTelefonoData"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtCedulaData"
+        app:layout_constraintTop_toBottomOf="@+id/txtCedula"
+        android:layout_marginTop="7dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

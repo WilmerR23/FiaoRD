@@ -9,5 +9,8 @@ public class BaseModel  extends ViewModel {
         public String getId() {
                 return this.Id;
         }
+        public void setId(String id) {
+                this.Id = id;
+        }
 
 }

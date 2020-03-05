@@ -20,10 +20,15 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
+            _Firebase = new Firebase();
         } else {
             throw new ClassCastException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    public Context getActivityContext() {
+       return mListener.getActivityContext();
     }
 
     public void receiveChildrenCount(int count) {}
@@ -31,6 +36,8 @@ public abstract class BaseFragment extends Fragment {
     public void receiveDataTodos(List<Object> obj) {}
 
     public void receiveObtenerPorFiltroData(Object obj) {}
+
+    public void receiveExisteValor(boolean valor) {};
 
 
 }

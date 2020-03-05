@@ -24,19 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtRecuperarContraseña"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="148dp"
-        android:text="Recuperar contraseña"
-        android:textSize="18sp"
-        app:layout_constraintRight_toLeftOf="@id/txtRegistrate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" />
 
     <EditText
         android:id="@+id/txtClaveLogin"
@@ -74,18 +61,27 @@
         app:srcCompat="@mipmap/key_login_48" />
 
     <TextView
-        android:id="@+id/txtRegistrate"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtRecuperarContraseña"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:textAlignment="center"
+        android:text="Recuperar contraseña"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/txtRegistrate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" />
+
+    <TextView
+        android:id="@+id/txtRegistrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Registrate"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/txtRecuperarContraseña"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRecuperarContraseña" />
 
     <Button
         android:id="@+id/btnIniciaSesion"

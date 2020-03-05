@@ -1,5 +1,7 @@
 package com.example.fiaoRD.Interfaces;
 
+import android.content.Context;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
@@ -18,4 +20,5 @@ public interface OnFragmentInteractionListener {
     void onDataTodosFound(List<Object> objs, BaseFragment listener);
     void onCallIntent(Class clase);
     String UpdateKey(List<String> parent,String key, Object value, String mensaje);
+    Context getActivityContext();
 }

@@ -37,6 +37,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private EditText txtCorreo, txtClave;
     private Button btnIniciarSesion;
     public static String id = "";
+    public static String Descripcion = "";
     public static LoginFragment newInstance() {
         return new LoginFragment();
     }
@@ -84,6 +85,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
         if (vm.getClave().equals(txtClave.getText().toString())) {
             id = Utility.encodeForFirebaseKey(vm.getCorreo());
+            Descripcion = vm.getNombre() + " " + vm.getApellido() + " " + vm.getTelefono();
            if (vm.getPrimerIngreso()) {
                mListener.onCallFragment(TipoUsuario.newInstance());
            } else {

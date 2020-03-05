@@ -45,6 +45,26 @@ public class Firebase {
         return CadenaOutput;
     }
 
+    public String SaveValuePush(String value, String id, String parent, final String mensaje) {
+        getInstance().child(parent).child(id).push().setValue(value, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                CadenaOutput = databaseError != null ? "Ha ocurrido un error: " + databaseError.getMessage() : mensaje;
+            }
+        });
+        return CadenaOutput;
+    }
+
+    public String SaveBaseModelPush(BaseModel value, String id, String parent, final String mensaje) {
+        getInstance().child(parent).child(id).child(value.getId()).setValue(value, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                CadenaOutput = databaseError != null ? "Ha ocurrido un error: " + databaseError.getMessage() : mensaje;
+            }
+        });
+        return CadenaOutput;
+    }
+
     public void Obtener(String id, String child, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
 
         Query query = getInstance().child(child).child(id);
@@ -63,9 +83,16 @@ public class Firebase {
         });
     }
 
-    public void ObtenerTodos(String id, String child, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
+    public void ObtenerTodos(ArrayList<String> lista, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
 
-        Query query = getInstance().child(child);
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        Query query = dref;
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,6 +153,22 @@ public class Firebase {
 
     }
 
+    public void ExisteValor(String id, String child, String order, String value, final BaseFragment listener) {
+        final Query query = getInstance().child(child).child(id).orderByChild(order).equalTo(value);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listener.receiveExisteValor(dataSnapshot.exists());
+                query.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String error = databaseError.getMessage();
+            }
+        });
+    }
+
     public void ObtenerPorFiltro(String codigo, String id, String child, final Class clase, final BaseFragment listener) {
         final Query query = getInstance().child(child).orderByChild(codigo).equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
@@ -145,5 +188,39 @@ public class Firebase {
                 String error = databaseError.getMessage();
             }
         });
+    }
+
+    public void ObtenerKeyPorFiltro(String codigo, String id, String child, final Class clase, final BaseFragment listener) {
+        final Query query = getInstance().child(child).orderByChild(codigo).equalTo(id);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                        String key = childSnapshot.getKey();
+                        listener.receiveObtenerPorFiltroData(key);
+                        break;
+                    }
+                } else {
+                    listener.receiveObtenerPorFiltroData(null);
+                }
+
+                query.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String error = databaseError.getMessage();
+            }
+        });
+    }
+
+    public void Remove(ArrayList<String> lista) {
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+        dref.removeValue();
     }
 }

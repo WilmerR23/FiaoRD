@@ -29,6 +29,7 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
     private PrestamistaColmaderoCodigoViewModel mViewModel;
     private Button btnIngresar;
     private EditText edCodigo;
+    private String key;
 
     public static PrestamistaColmaderoCodigo newInstance() {
         return new PrestamistaColmaderoCodigo();
@@ -46,7 +47,7 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
             public void onClick(View view) {
                 if (edCodigo.getText().toString().length() >= 4) {
                     _Firebase = new Firebase();
-                    _Firebase.ObtenerPorFiltro("codigo",edCodigo.getText().toString(),"CodigoUsuarioPrestamista",
+                    _Firebase.ObtenerKeyPorFiltro("codigo",edCodigo.getText().toString(),"CodigoUsuarioPrestamista",
                             PrestamistaAsignacionCodigoViewModel.class,PrestamistaColmaderoCodigo.this);
                 } else {
                     mListener.onMakeToast("Debes ingresar un codigo valido de 4 digitos", Toast.LENGTH_SHORT);
@@ -59,17 +60,30 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
     @Override
     public void receiveObtenerPorFiltroData(Object obj) {
        if (obj != null) {
-           ArrayList lista = new ArrayList();
-           lista.add("Usuarios");
-           lista.add(LoginFragment.id);
-            String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
-            mListener.onCallIntent(MainActivity.class);
+            key = (String) obj;
+           _Firebase.ExisteValor(key,"PrestamistaClientes","cliente",LoginFragment.id,this);
         } else {
-            mListener.onMakeToast("Este codigo no existe.", Toast.LENGTH_SHORT);
+            mListener.onMakeToast("Este codigo no existe.", Toast.LENGTH_LONG);
         }
     }
 
+    @Override
+    public void receiveExisteValor(boolean valor) {
 
+        if (valor) {
+            mListener.onMakeToast("Ya eres cliente de este prestamista.", Toast.LENGTH_LONG);
+        } else {
+
+            ArrayList lista = new ArrayList();
+
+            lista.add("Usuarios");
+            lista.add(LoginFragment.id);
+            String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
+            PrestamistaColmaderoCodigoViewModel vm = new PrestamistaColmaderoCodigoViewModel(LoginFragment.id,LoginFragment.Descripcion);
+            _Firebase.SaveBaseModelPush(vm,key,"PrestamistaClientes","");
+            mListener.onCallIntent(MainActivity.class);
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

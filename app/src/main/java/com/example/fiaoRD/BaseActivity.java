@@ -1,5 +1,6 @@
 package com.example.fiaoRD;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.example.fiaoRD.Models.BaseModel;
 import com.example.fiaoRD.ui.BaseFragment;
 import com.example.fiaoRD.ui.register.RegisterViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseActivity extends AppCompatActivity implements OnFragmentInteractionListener {
@@ -50,7 +52,10 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void ObtenerTodos(String id, String child, Class clase, BaseFragment listener) {
-        _Firebase.ObtenerTodos(this.id == "" ? id : this.id, child, clase,this, listener);
+        ArrayList<String> lista = new ArrayList<String>();
+        lista.add(child);
+        lista.add(this.id == "" ? id : this.id);
+        _Firebase.ObtenerTodos(lista, clase,this, listener);
     }
 
     @Override
@@ -73,5 +78,10 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public String UpdateKey(List<String> parent, String key, Object value, String mensaje) {
         return _Firebase.UpdateKey(parent,key,value,mensaje);
+    }
+
+    @Override
+    public Context getActivityContext() {
+        return this;
     }
 }
