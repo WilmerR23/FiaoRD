@@ -190,6 +190,39 @@ public class Firebase {
         });
     }
 
+    public void ObtenerTodosPorFiltro(ArrayList<String> lista,String key, String value, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
+
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        final Query query = dref;//.orderByChild(key).startAt(value);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                List<Object> lista = new ArrayList<Object>();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                        lista.add(postSnapshot.getValue(clase));
+                    }
+                    dataFound.onDataTodosFound(lista,listener);
+                } else {
+                    dataFound.onDataTodosFound(lista,listener);
+                }
+                query.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String error = databaseError.getMessage();
+            }
+        });
+    }
+
+
     public void ObtenerKeyPorFiltro(String codigo, String id, String child, final Class clase, final BaseFragment listener) {
         final Query query = getInstance().child(child).orderByChild(codigo).equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
