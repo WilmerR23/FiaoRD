@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "676580320204",
-    "firebase_url": "https://appmello-f7e05.firebaseio.com",
-    "project_id": "appmello-f7e05",
-    "storage_bucket": "appmello-f7e05.appspot.com"
+    "project_number": "509308875763",
+    "firebase_url": "https://fiaord.firebaseio.com",
+    "project_id": "fiaord",
+    "storage_bucket": "fiaord.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:676580320204:android:9d4278b584e8ee31f3f369",
+        "mobilesdk_app_id": "1:509308875763:android:1296164897796d4111d886",
         "android_client_info": {
-          "package_name": "com.example.fiaoRD"
+          "package_name": "com.example.fiaoRDITSC"
         }
       },
       "oauth_client": [
         {
-          "client_id": "676580320204-s054f28tdq8n7kck3rakrtq6mmpajmbt.apps.googleusercontent.com",
+          "client_id": "509308875763-6bol1d1ks696smh21ctgp9660blsctld.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAlUB4tqyFbH0b5igT98MLseA84jNpVqdU"
+          "current_key": "AIzaSyDO68ZY_24G0Z-ih7jtAW8eAmo8Js5hF6M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "676580320204-s054f28tdq8n7kck3rakrtq6mmpajmbt.apps.googleusercontent.com",
+              "client_id": "509308875763-6bol1d1ks696smh21ctgp9660blsctld.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
