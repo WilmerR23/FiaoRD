@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
         home = root.findViewById(R.id.constraintLayout_Home);
         home.setVisibility(View.INVISIBLE);
 
-        _Firebase.ExisteKey("CodigoUsuarioPrestamista",LoginFragment.id,this);
+        _Firebase.ExisteKey(LoginFragment.id,"CodigoUsuarioPrestamista",this);
 
 
         return root;
@@ -172,7 +172,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
                 List<Object> lista = new ArrayList<>();
                 if (texto.length() > 0) {
                     for(PrestamistaColmaderoCodigoViewModel item : prestamistaClientesList){
-                        if (item.getDescripcion().contains(texto)) {
+                        if (item.getDescripcion().toLowerCase().contains(texto.toLowerCase())) {
                             lista.add(item);
                         }
                     }
