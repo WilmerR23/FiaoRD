@@ -1,9 +1,11 @@
 package com.example.fiaoRDITSC.ui.login;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.example.fiaoRDITSC.ui.Utility;
 import com.example.fiaoRDITSC.ui.register.Register;
 import com.example.fiaoRDITSC.ui.register.RegisterViewModel;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
@@ -72,18 +75,25 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void receiveData(Object obj) {
         vm = (RegisterViewModel) obj;
 
-        if (vm.getClave().equals(txtClave.getText().toString())) {
-            id = Utility.encodeForFirebaseKey(vm.getCorreo());
-            Descripcion = vm.getNombre() + " " + vm.getApellido() + " " + vm.getTelefono();
-           if (vm.getPrimerIngreso()) {
-               mListener.onCallFragment(TipoUsuario.newInstance());
-           } else {
-               mListener.onCallIntentWithData(MainActivity.class, vm);
-           }
+        try {
+            if (vm.getClave().equals(
+                    Utility.FormatToSha(txtClave.getText().toString()))) {
+                id = Utility.encodeForFirebaseKey(vm.getCorreo());
+                Descripcion = vm.getNombre() + " " + vm.getApellido() + " " + vm.getTelefono();
+               if (vm.getPrimerIngreso()) {
+                   mListener.onCallFragment(TipoUsuario.newInstance());
+               } else {
+                   mListener.onCallIntentWithData(MainActivity.class, vm);
+               }
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            mListener.onMakeToast(e.getMessage(), Toast.LENGTH_LONG);
         }
     }
 
