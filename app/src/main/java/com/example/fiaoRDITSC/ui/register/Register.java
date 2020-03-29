@@ -53,7 +53,7 @@ public class Register extends BaseFragment implements View.OnClickListener {
         txtConfirmarClave = v.findViewById(R.id.txtConfirmarClave);
 
         btnRegistro = v.findViewById(R.id.btnRegistro);
-        txtIniciaSesion = v.findViewById(R.id.txtIniciaSesion);
+        txtIniciaSesion = v.findViewById(R.id.lblIniciaSesion);
 
         btnRegistro.setOnClickListener(this);
         txtIniciaSesion.setOnClickListener(this);
@@ -118,7 +118,7 @@ public class Register extends BaseFragment implements View.OnClickListener {
                 }
                 break;
 
-            case R.id.txtIniciaSesion:
+            case R.id.lblIniciaSesion:
                 mListener.onCallFragment(LoginFragment.newInstance());
                 break;
         }

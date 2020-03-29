@@ -33,17 +33,24 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private EditText txtCorreo, txtClave;
     private Button btnIniciarSesion;
     public static String id = "";
-    public static String Descripcion = "";
+    public static String Descripcion = "", cad;
     public static LoginFragment newInstance() {
         return new LoginFragment();
     }
 
+//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.login_fragment2, container, false);
         txtRegistrarse = v.findViewById(R.id.txtRegistrateAqui);
+
+//        try {
+//            cad = Utility.FormatToSha("12345678Pr@");
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
 
         btnIniciarSesion = v.findViewById(R.id.btnIniciaSesion);
 

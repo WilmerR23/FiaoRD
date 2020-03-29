@@ -25,6 +25,7 @@ import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmadero
 import com.example.fiaoRDITSC.ui.Utility;
 import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
+import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +126,8 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
 
     @Override
     public void OnAdd(int itemSelected) {
-
+        home.setVisibility(View.INVISIBLE);
+        mListener.onCallFragmentKey(R.id.nav_host_fragment, CrearPrestamo.newInstance());
         mListener.onMakeToast("Boton que tendra la funcion de mostrar pantalla de prestamo",Toast.LENGTH_LONG);
     }
 
