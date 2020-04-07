@@ -26,6 +26,7 @@ import com.example.fiaoRDITSC.ui.Utility;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 public class Register extends BaseFragment implements View.OnClickListener {
@@ -146,8 +147,11 @@ public class Register extends BaseFragment implements View.OnClickListener {
                 e.printStackTrace();
                 mListener.onMakeToast(e.getMessage(), Toast.LENGTH_LONG);
             }
-
-            String cadena = mListener.Save(vm, Utility.encodeForFirebaseKey(vm.getCorreo()), "Usuarios", "Usuario registrado con exito.");
+            ArrayList<String> lista = new ArrayList<String>();
+            lista.add("Usuarios");
+            String key = Utility.encodeForFirebaseKey(vm.getCorreo());
+            lista.add(key);
+            String cadena = mListener.Save(vm, lista, "Usuario registrado con exito.");
 
             mListener.onCallFragment(LoginFragment.newInstance());
             mListener.onMakeToast(cadena, Toast.LENGTH_SHORT);

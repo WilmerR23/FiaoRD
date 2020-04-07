@@ -7,12 +7,13 @@ import androidx.fragment.app.Fragment;
 import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface OnFragmentInteractionListener {
     void onCallFragment(Fragment frg);
     void onMakeToast(String text, int Duration);
-    String Save(BaseModel vm, String id, String parent, final String mensaje);
+    String Save(BaseModel vm, ArrayList<String> parent, final String mensaje);
     void Obtener(String id, String child, Class clase, BaseFragment listener);
     void ObtenerTodos(String id, String child, Class clase, BaseFragment listener);
     void onDataFound(Object obj, BaseFragment listener);

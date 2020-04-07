@@ -28,8 +28,14 @@ public class Firebase {
         return mDatabase;
     }
 
-    public String Save(BaseModel vm, String id, String parent, final String mensaje) {
-        getInstance().child(parent).child(id).setValue(vm, new DatabaseReference.CompletionListener() {
+    public String Save(BaseModel vm, ArrayList<String> parent, final String mensaje) {
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < parent.size(); x++) {
+            dref = dref.child(parent.get(x));
+        }
+
+        dref.setValue(vm, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 CadenaOutput = databaseError != null ? "Ha ocurrido un error: " + databaseError.getMessage() : mensaje;

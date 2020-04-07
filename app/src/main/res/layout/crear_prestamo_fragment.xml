@@ -93,44 +93,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblInteres"
-                app:layout_constraintBottom_toTopOf="@+id/lblTotal"
-
-                android:layout_marginStart="72px"
-                android:layout_marginLeft="72px"
-                android:layout_marginEnd="72px"
-                android:layout_marginRight="72px"/>
-
-            <TextView
-                android:id="@+id/lblTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Total"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.08"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtInteres" />
-
-
-            <EditText
-                android:id="@+id/txtTotal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:enabled="false"
-                android:maxLength="10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblTotal"
                 app:layout_constraintBottom_toTopOf="@+id/lblPeriodoPago"
 
                 android:layout_marginStart="72px"
                 android:layout_marginLeft="72px"
                 android:layout_marginEnd="72px"
                 android:layout_marginRight="72px"/>
+
 
 
             <TextView
@@ -144,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTotal" />
+                app:layout_constraintTop_toBottomOf="@+id/txtInteres" />
 
             <EditText
                 android:id="@+id/txtPeriodoPago"
@@ -173,22 +142,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.09"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPeriodoPago" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPeriodoPago"
+                app:layout_constraintBottom_toTopOf="@+id/txtTipoPago"  />
 
-            <EditText
+            <Spinner
                 android:id="@+id/txtTipoPago"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblTipoPago"
-
                 android:layout_marginStart="72px"
                 android:layout_marginLeft="72px"
                 android:layout_marginEnd="72px"
-                android:layout_marginRight="72px"/>
+                android:layout_marginRight="72px"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayoutTextView"  />
 
             <LinearLayout
                 android:id="@+id/linearLayoutTextView"
@@ -197,7 +165,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -247,6 +215,7 @@
                     android:id="@+id/txtFechaInicio"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
+                    android:focusable="false"
                     android:layout_weight="2"
                     android:ems="10"
                     android:inputType="date"/>
@@ -264,6 +233,40 @@
 
             </LinearLayout>
 
+
+
+
+            <TextView
+                android:id="@+id/lblTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Total"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutFechas"/>
+
+
+            <EditText
+                android:id="@+id/txtTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:enabled="false"
+                android:maxLength="10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblTotal"
+
+                android:layout_marginStart="72px"
+                android:layout_marginLeft="72px"
+                android:layout_marginEnd="72px"
+                android:layout_marginRight="72px"/>
+
             <LinearLayout
                 android:id="@+id/linearLayoutBtnGuardar"
                 android:layout_width="match_parent"
@@ -278,14 +281,25 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutFechas"
+                app:layout_constraintTop_toBottomOf="@+id/txtTotal"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <Button
+                    android:id="@+id/btnCalcularPrestamo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/colorAccent"
+                    android:text="Calcular"
+                    android:textColor="#FFF" />
+
+                <Button
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/btnCrearPrestamo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="2"
                     android:background="@color/colorPrimary"
                     android:text="Guardar"
                     android:textColor="#FFF" />

@@ -1,6 +1,7 @@
 package com.example.fiaoRDITSC.ui;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +14,11 @@ public abstract class BaseFragment extends Fragment {
 
     protected OnFragmentInteractionListener mListener;
     protected Firebase _Firebase;
+    public View view;
+
+    public OnFragmentInteractionListener getListener() {
+        return mListener;
+    }
 
     @Override
     public void onAttach(Context context) {

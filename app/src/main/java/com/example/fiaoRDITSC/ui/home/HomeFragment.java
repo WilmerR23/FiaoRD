@@ -41,6 +41,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     private EditText etNombreCliente;
     private View root;
     private ConstraintLayout home;
+    public static String key;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -127,6 +128,8 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     @Override
     public void OnAdd(int itemSelected) {
         home.setVisibility(View.INVISIBLE);
+        PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get(itemSelected);
+        key = model.getId();
         mListener.onCallFragmentKey(R.id.nav_host_fragment, CrearPrestamo.newInstance());
         mListener.onMakeToast("Boton que tendra la funcion de mostrar pantalla de prestamo",Toast.LENGTH_LONG);
     }

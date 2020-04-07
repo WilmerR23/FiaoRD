@@ -17,6 +17,7 @@ import com.example.fiaoRDITSC.Firebase;
 import com.example.fiaoRDITSC.MainActivity;
 import com.example.fiaoRDITSC.R;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
 
 import java.util.ArrayList;
@@ -66,7 +67,11 @@ public class PrestamistaAsignacionCodigo extends BaseFragment {
     public void receiveChildrenCount(int count) {
         String codigo = String.format("%04d", count + 1);
         PrestamistaAsignacionCodigoViewModel vm = new PrestamistaAsignacionCodigoViewModel(codigo);
-        mListener.Save(vm, LoginFragment.id,"CodigoUsuarioPrestamista","");
+        ArrayList<String> lista = new ArrayList<String>();
+        lista.add("CodigoUsuarioPrestamista");
+        String key = LoginFragment.id;
+        lista.add(key);
+        mListener.Save(vm, lista,"");
         etAsignacionCodigo.setText(codigo);
     }
 

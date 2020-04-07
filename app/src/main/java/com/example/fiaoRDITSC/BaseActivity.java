@@ -44,8 +44,8 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public String Save(BaseModel vm, String id, String parent, String mensaje) {
-        return _Firebase.Save(vm,id == "" ? this.id : id,parent,mensaje);
+    public String Save(BaseModel vm, ArrayList<String> parent, String mensaje) {
+        return _Firebase.Save(vm,parent,mensaje);
     }
 
     @Override
