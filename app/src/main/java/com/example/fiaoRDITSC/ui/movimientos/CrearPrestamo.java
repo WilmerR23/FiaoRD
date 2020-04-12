@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.fiaoRDITSC.Interfaces.OnEditTextDatePicker;
 import com.example.fiaoRDITSC.R;
+import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.Utility.MyEditTextDatePicker;
 import com.example.fiaoRDITSC.Utility.StringSpinnerMap;
 import com.example.fiaoRDITSC.ui.BaseFragment;
@@ -31,6 +32,7 @@ import com.example.fiaoRDITSC.ui.login.LoginFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,7 +44,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
 
     private CrearPrestamoViewModel mViewModel;
     private EditText fechaInicio,monto,interes,total,periodos,fechaFin;
-    private int TipoPago = 0, dias;
+    private int TipoPago = 1, dias;
     private Button btnCalcular, btnGuardar;
 
     public static CrearPrestamo newInstance() {
@@ -101,7 +103,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
     }
 
     private void CalcularFecha() {
-        if (periodos.getText().toString().length() > 0 && fechaInicio.getText().toString().length() > 0 && TipoPago != 0) {
+        if (periodos.getText().toString().length() > 0 && fechaInicio.getText().toString().length() > 0) {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             try {
@@ -129,7 +131,9 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
         // An item was selected. You can retrieve the selected item using
         StringSpinnerMap valor = (StringSpinnerMap) parent.getItemAtPosition(pos);
         TipoPago = valor.key;
-        CalcularFecha();
+        if (fechaInicio.getText().toString().length() > 0) {
+            CalcularFecha();
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -161,16 +165,33 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
                  fechaInicio.getText().toString(),
                  fechaFin.getText().toString(),
                  Integer.parseInt(total.getText().toString()),
-                         0
+                 0,
+                 LoginFragment.id
          );
 
         ArrayList<String> lista = new ArrayList<String>();
         lista.add("Prestamos");
         String key = HomeFragment.key;
         lista.add(key);
-        String cadena = mListener.Save(vm, lista, "Prestamo registrado con exito.");
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        String tiempo = formatter.format(calendar.getTime());
+        lista.add("F"+ vm.getFechaInicio().replaceAll("/","_") + tiempo);
+        vm.setFechaInicio(vm.getFechaInicio() + tiempo);
+        String cadena = mListener.Save(vm, lista, "");
 
-        mListener.onMakeToast(cadena, Toast.LENGTH_SHORT);
+        mListener.onMakeDialog(this,
+                new MessageDialog("Importante",
+                        "Prestamo registrado con exito. Pulse aceptar para ver el prestamo",
+                                 "Aceptar",
+                        "Cancelar"),
+                null);
+
+    }
+
+    @Override
+    public void DialogPositiveCallback(Object parameter) {
+            mListener.onCallFragmentKey(R.id.nav_host_fragment, VerPrestamos.newInstance());
     }
 
     public boolean validarDatos() {
@@ -178,7 +199,6 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
                 monto.getText().toString().length() > 0 &&
                 interes.getText().toString().length() > 0 &&
                 periodos.getText().toString().length() > 0 &&
-                TipoPago != 0 &&
                 fechaFin.getText().toString().length() > 0
         ;
     }

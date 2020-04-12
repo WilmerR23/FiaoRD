@@ -19,18 +19,22 @@ public class list_adapter extends ArrayAdapter<String>  {
     private Context context;
     private ArrayList<String> labels;
     private OnListViewListener _Listener;
+    private boolean _show;
+    private int _layout;
 
-    public list_adapter(Context context, ArrayList<String> labels, OnListViewListener Listener) {
+    public list_adapter(Context context, ArrayList<String> labels, boolean show, int layout, OnListViewListener Listener) {
         super(context, R.layout.row_list_view, labels);
         this.context = context;
         this.labels = labels;
         this._Listener = Listener;
+        this._show = show;
+        this._layout = layout;
     }
 
     static class ViewHolder {
         public TextView textoContenido;
-        public ImageButton btnAdd;
-        public ImageButton btnDelete;
+        public ImageButton btnLeft;
+        public ImageButton btnRight;
     }
 
     @Override
@@ -41,11 +45,15 @@ public class list_adapter extends ArrayAdapter<String>  {
         if (rowView == null) {
 
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            rowView = inflater.inflate(R.layout.row_list_view, null, true);
+            rowView = inflater.inflate(_layout, null, true);
             holder = new ViewHolder();
             holder.textoContenido = (TextView) rowView.findViewById(R.id.textView1);
-            holder.btnAdd = (ImageButton) rowView.findViewById(R.id.imageButton1);
-            holder.btnDelete = (ImageButton) rowView.findViewById(R.id.imageButton2);
+            holder.btnLeft = (ImageButton) rowView.findViewById(R.id.imageButton1);
+            if (_show) {
+            holder.btnRight = (ImageButton) rowView.findViewById(R.id.imageButton2);
+            }
+
+
             rowView.setTag(holder);
         } else {
             holder = (ViewHolder) rowView.getTag();
@@ -59,19 +67,21 @@ public class list_adapter extends ArrayAdapter<String>  {
                 _Listener.OnSelect(position);
             }
         });
-        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+        holder.btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _Listener.OnAdd(position);
             }
         });
 
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _Listener.OnDelete(position);
-            }
-        });
+        if (_show) {
+            holder.btnRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _Listener.OnDelete(position);
+                }
+            });
+        }
         return rowView;
     }
 }

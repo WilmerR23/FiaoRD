@@ -9,7 +9,7 @@ import java.util.Date;
 public class CrearPrestamoViewModel extends BaseModel {
     // TODO: Implement the ViewModel
 
-    public CrearPrestamoViewModel(int monto, int interes, int periodos, int tipoPago, String fechaInicio, String fechaFin, int total, int totalPagado) {
+    public CrearPrestamoViewModel(int monto, int interes, int periodos, int tipoPago, String fechaInicio, String fechaFin, int total, int totalPagado, String prestamista) {
         Monto = monto;
         Interes = interes;
         Periodos = periodos;
@@ -18,6 +18,7 @@ public class CrearPrestamoViewModel extends BaseModel {
         FechaFin = fechaFin;
         Total = total;
         TotalPagado = totalPagado;
+        Prestamista = prestamista;
     }
 
     private int Monto;
@@ -26,8 +27,14 @@ public class CrearPrestamoViewModel extends BaseModel {
     private int TipoPago;
     private String FechaInicio;
     private String FechaFin;
+    private String Prestamista;
     private int Total;
     private int TotalPagado;
+
+
+    public void setPrestamista(String prestamista) {
+        Prestamista = prestamista;
+    }
 
     public void setMonto(int monto) {
         Monto = monto;
@@ -39,6 +46,10 @@ public class CrearPrestamoViewModel extends BaseModel {
 
     public void setPeriodos(int periodos) {
         Periodos = periodos;
+    }
+
+    public String getPrestamista() {
+        return Prestamista;
     }
 
     public int getMonto() {
@@ -96,6 +107,15 @@ public class CrearPrestamoViewModel extends BaseModel {
 
     public CrearPrestamoViewModel() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+
+    public String getDescripcion() {
+        return "Monto: " +
+                getMonto() +
+                " Fecha Inicio: " +
+                getFechaInicio().substring(0,getFechaInicio().length() - 9) +
+                " Fecha fin: " +
+                getFechaFin();
     }
 
 

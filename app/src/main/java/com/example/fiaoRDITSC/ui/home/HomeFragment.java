@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.fiaoRDITSC.Interfaces.OnListViewListener;
 import com.example.fiaoRDITSC.R;
+import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.Utility.list_adapter;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
@@ -121,52 +122,51 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
             labels.add(vm.getDescripcion());
         }
 
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels, true,R.layout.row_list_view, this);
         list_view.setAdapter(adapter);
+    }
+
+    public void setKey(int itemSelected) {
+        home.setVisibility(View.INVISIBLE);
+        PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get(itemSelected);
+        key = model.getId();
     }
 
     @Override
     public void OnAdd(int itemSelected) {
-        home.setVisibility(View.INVISIBLE);
-        PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get(itemSelected);
-        key = model.getId();
+        setKey(itemSelected);
         mListener.onCallFragmentKey(R.id.nav_host_fragment, CrearPrestamo.newInstance());
-        mListener.onMakeToast("Boton que tendra la funcion de mostrar pantalla de prestamo",Toast.LENGTH_LONG);
+       // mListener.onMakeToast("Boton que tendra la funcion de mostrar pantalla de prestamo",Toast.LENGTH_LONG);
     }
 
     @Override
     public void OnDelete(final int itemSelected) {
-        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this.getActivityContext());
-        dialogo1.setTitle("Importante");
-        dialogo1.setMessage("¿ Desea eliminar este registro ?");
-        dialogo1.setCancelable(true);
-        final HomeFragment hF = this;
-        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-                PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get(itemSelected);
-                String key = model.getId();
-                ArrayList<String> lista = new ArrayList<>();
-                lista.add("PrestamistaClientes");
-                lista.add(LoginFragment.id);
-                lista.add(key);
-                _Firebase.Remove(lista);
-                Toast.makeText(hF.getActivityContext(),"Registro eliminado satisfactoriamente",Toast.LENGTH_LONG).show();
-                _Firebase.ObtenerTodos(lista, PrestamistaColmaderoCodigoViewModel.class,mListener,hF);
-            }
-        });
-        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-                dialogo1.cancel();
-            }
-        });
-        dialogo1.show();
+        mListener.onMakeDialog(this,
+                new MessageDialog("Importante",
+                        "¿ Desea eliminar este registro ?",
+                        "Confirmar",
+                        "Cancerlar"), itemSelected);
+    }
+
+    @Override
+    public void DialogPositiveCallback(Object parameter) {
+        PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get((int) parameter);
+        String key = model.getId();
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("PrestamistaClientes");
+        lista.add(LoginFragment.id);
+        lista.add(key);
+        _Firebase.Remove(lista);
+        Toast.makeText(this.getActivityContext(),"Registro eliminado satisfactoriamente",Toast.LENGTH_LONG).show();
+        _Firebase.ObtenerTodos(lista, PrestamistaColmaderoCodigoViewModel.class,mListener,this);
     }
 
     @Override
     public void OnSelect(final int itemSelected) {
-       // mListener.onCallFragment(ClienteFragment.newInstance());
+        setKey(itemSelected);
+        mListener.onCallFragmentKey(R.id.nav_host_fragment,ClienteFragment.newInstance());
 
-        mListener.onMakeToast("Ha elegido el registro en la fila" + itemSelected + 1,Toast.LENGTH_LONG);
+        //mListener.onMakeToast("Ha elegido el registro en la fila" + itemSelected + 1,Toast.LENGTH_LONG);
     }
 
     @Override

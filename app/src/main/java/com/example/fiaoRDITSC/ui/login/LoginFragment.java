@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fiaoRDITSC.MainActivity;
+import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.R;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.TipoUsuario.TipoUsuario;
@@ -24,6 +25,7 @@ import com.example.fiaoRDITSC.ui.register.Register;
 import com.example.fiaoRDITSC.ui.register.RegisterViewModel;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
@@ -37,6 +39,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public static LoginFragment newInstance() {
         return new LoginFragment();
     }
+    public static RegisterViewModel UserVm;
 
 //    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Nullable
@@ -73,7 +76,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.btnIniciaSesion:
                 if (txtClave.getText().toString().length() > 0 && txtCorreo.getText().toString().length() > 0) {
-                    mListener.Obtener(Utility.encodeForFirebaseKey(txtCorreo.getText().toString()),"Usuarios", RegisterViewModel.class, this);
+                    ArrayList<String> lista = new ArrayList<String>();
+                    lista.add("Usuarios");
+                    String key = Utility.encodeForFirebaseKey(txtCorreo.getText().toString());
+                    lista.add(key);
+
+                    mListener.Obtener(lista, RegisterViewModel.class, this);
                 }
                 break;
             case R.id.txtRegistrateAqui:
@@ -85,17 +93,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void receiveData(Object obj) {
-        vm = (RegisterViewModel) obj;
+        UserVm = (RegisterViewModel) obj;
 
         try {
-            if (vm.getClave().equals(
+            if (UserVm.getClave().equals(
                     Utility.FormatToSha(txtClave.getText().toString()))) {
-                id = Utility.encodeForFirebaseKey(vm.getCorreo());
-                Descripcion = vm.getNombre() + " " + vm.getApellido() + " " + vm.getTelefono();
-               if (vm.getPrimerIngreso()) {
+                id = Utility.encodeForFirebaseKey(UserVm.getCorreo());
+                Descripcion = UserVm.getNombre() + " " + UserVm.getApellido() + " " + UserVm.getTelefono();
+               if (UserVm.getPrimerIngreso()) {
                    mListener.onCallFragment(TipoUsuario.newInstance());
                } else {
-                   mListener.onCallIntentWithData(MainActivity.class, vm);
+                   mListener.onCallIntentWithData(MainActivity.class, UserVm);
                }
             }
         } catch (NoSuchAlgorithmException e) {

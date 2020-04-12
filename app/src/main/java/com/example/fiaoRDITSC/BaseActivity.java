@@ -1,6 +1,8 @@
 package com.example.fiaoRDITSC;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -9,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRDITSC.Models.BaseModel;
+import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,24 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
                 .replace(key, frg).commit();
     }
 
+    @Override
+    public void onMakeDialog(final BaseFragment bf, MessageDialog mD, final Object paremeter) {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle(mD.Title);
+        dialogo1.setMessage(mD.Message);
+        dialogo1.setCancelable(true);
+        dialogo1.setPositiveButton(mD.PositiveButtonMessage, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                    bf.DialogPositiveCallback(paremeter);
+            }
+        });
+        dialogo1.setNegativeButton(mD.NegativeButtonMessage, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.cancel();
+            }
+        });
+        dialogo1.show();
+    }
 
 
     @Override
@@ -49,8 +71,8 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void Obtener(String id, String child, Class clase, BaseFragment listener) {
-        _Firebase.Obtener(id, child, clase,this, listener);
+    public void Obtener(ArrayList<String> parent, Class clase, BaseFragment listener) {
+        _Firebase.Obtener(parent,clase,this, listener);
     }
 
     @Override
@@ -63,7 +85,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void onDataFound(Object obj, BaseFragment listener) {
-        vm = obj;
+//        vm = obj;
         listener.receiveData(obj);
     }
 
@@ -99,4 +121,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     public Object getBaseModel() {
         return vm;
     }
+
+
+
 }

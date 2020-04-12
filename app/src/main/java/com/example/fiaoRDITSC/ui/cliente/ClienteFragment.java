@@ -19,8 +19,10 @@ import android.widget.Toast;
 import com.example.fiaoRDITSC.R;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
+import com.example.fiaoRDITSC.ui.Utility;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
+import com.example.fiaoRDITSC.ui.movimientos.VerPrestamos;
 import com.example.fiaoRDITSC.ui.register.RegisterViewModel;
 
 import java.util.ArrayList;
@@ -41,7 +43,8 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.cliente_fragment, container, false);
 
-        vm = (RegisterViewModel) mListener.getBaseModel();
+        btnMovimientos = v.findViewById(R.id.btnPrestamos);
+        btnEditarPerfil = v.findViewById(R.id.btnEditarPerfil);
         txtDireccion = v.findViewById(R.id.txtDireccion);
         txtApellido = v.findViewById(R.id.txtApellidos);
         txtCorreo = v.findViewById(R.id.txtCorreo);
@@ -49,9 +52,34 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
         txtCedula = v.findViewById(R.id.txtCedula);
         txtNombre = v.findViewById(R.id.txtNombres);
 
-        btnMovimientos = v.findViewById(R.id.btnMovimientos);
-        btnEditarPerfil = v.findViewById(R.id.btnEditarPerfil);
 
+        btnMovimientos.setOnClickListener(this);
+        btnEditarPerfil.setOnClickListener(this);
+
+
+//        vm = (RegisterViewModel) mListener.getBaseModel();
+        vm = LoginFragment.UserVm;
+        if (HomeFragment.key != "") {
+            txtApellido.setEnabled(false);
+            txtDireccion.setEnabled(false);
+            txtCorreo.setEnabled(false);
+            txtTelefono.setEnabled(false);
+            txtCedula.setEnabled(false);
+            txtNombre.setEnabled(false);
+            btnEditarPerfil.setEnabled(false);
+            btnEditarPerfil.setOnClickListener(null);
+            ArrayList<String> lista = new ArrayList<String>();
+            lista.add("Usuarios");
+            String key = HomeFragment.key;
+            lista.add(key);
+            mListener.Obtener(lista, RegisterViewModel.class, this);
+        } else {
+            setScreenValues();
+        }
+        return v;
+    }
+
+    private void setScreenValues() {
         if (vm != null) {
             txtApellido.setText(vm.getApellido());
             txtDireccion.setText(vm.getDireccion());
@@ -60,11 +88,6 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
             txtCedula.setText(vm.getCedula());
             txtNombre.setText(vm.getNombre());
         }
-
-        btnMovimientos.setOnClickListener(this);
-        btnEditarPerfil.setOnClickListener(this);
-
-        return v;
     }
 
     @Override
@@ -94,8 +117,8 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnMovimientos:
-
+            case R.id.btnPrestamos:
+                mListener.onCallFragmentKey(R.id.nav_host_fragment, VerPrestamos.newInstance());
                 break;
             case R.id.btnEditarPerfil:
                 if (validarDatos()) {
@@ -124,5 +147,11 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
                 }
                 break;
         }
+    }
+
+    @Override
+    public void receiveData(Object obj) {
+        vm = (RegisterViewModel) obj;
+        setScreenValues();
     }
 }

@@ -45,4 +45,6 @@ public abstract class BaseFragment extends Fragment {
     public void receiveExisteValor(boolean valor) {}
     public void receiveExisteKey(boolean valor) {}
 
+    public void DialogPositiveCallback(Object paremeter) {}
+
 }

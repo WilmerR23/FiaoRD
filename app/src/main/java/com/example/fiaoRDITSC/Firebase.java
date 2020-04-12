@@ -64,9 +64,17 @@ public class Firebase {
         return CadenaOutput;
     }
 
-    public void Obtener(String id, String child, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
+    public void Obtener(ArrayList<String> lista, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
 
-        Query query = getInstance().child(child).child(id);
+
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        Query query = dref;
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
