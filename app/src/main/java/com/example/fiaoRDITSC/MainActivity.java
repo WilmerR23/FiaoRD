@@ -11,6 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.fiaoRDITSC.Models.BaseModel;
+import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
+import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -22,6 +24,7 @@ import java.io.Serializable;
 public class MainActivity extends BaseActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +34,8 @@ public class MainActivity extends BaseActivity {
 
         vm =  getIntent().getSerializableExtra("BaseModel");
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -43,6 +46,38 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        setupDrawerContent(navigationView);
+    }
+
+    private void setupDrawerContent(final NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case R.id.nav_home:
+                this.onCallFragmentKey(this.getCurrentFragment(),R.id.nav_host_fragment, HomeFragment.newInstance(),"Clientes");
+                break;
+            case R.id.nav_perfil:
+                HomeFragment.key = null;
+                this.onCallFragmentKey(this.getCurrentFragment(),R.id.nav_host_fragment, ClienteFragment.newInstance(), "Mi perfil");
+                break;
+        }
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawer.closeDrawers();
     }
 
     @Override
@@ -55,19 +90,9 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_home:
-               // Fragment frg = new Login();
-               // moveToFragment(frg);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void moveToFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
-
     }
 
     @Override

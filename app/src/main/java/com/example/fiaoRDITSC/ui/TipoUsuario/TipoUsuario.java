@@ -28,6 +28,11 @@ public class TipoUsuario extends BaseFragment implements View.OnClickListener, O
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         View v = inflater.inflate(R.layout.tipo_usuario_fragment, container, false);
         btnCliente = v.findViewById(R.id.btnCliente);
         btnColmadero = v.findViewById(R.id.btnColmadero);

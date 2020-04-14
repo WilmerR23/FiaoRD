@@ -46,6 +46,11 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         View v = inflater.inflate(R.layout.login_fragment2, container, false);
         txtRegistrarse = v.findViewById(R.id.txtRegistrateAqui);
 
@@ -85,7 +90,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 }
                 break;
             case R.id.txtRegistrateAqui:
-                mListener.onCallFragment(Register.newInstance());
+                mListener.onCallFragmentKey(this,R.id.nav_host_fragment,Register.newInstance(),"Registro");
                 break;
         }
     }

@@ -43,6 +43,10 @@ public class Register extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         View v = inflater.inflate(R.layout.register_fragment, container, false);
         txtNombre = v.findViewById(R.id.txtNombre);
         txtApellido = v.findViewById(R.id.txtApellido);

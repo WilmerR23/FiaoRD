@@ -24,7 +24,8 @@ public interface OnFragmentInteractionListener {
     String UpdateKey(List<String> parent,String key, Object value, String mensaje);
     Context getActivityContext();
     Object getBaseModel();
-    void onCallFragmentKey(int key, Fragment frg);
+    void onCallFragmentKey(Fragment old_frg, int key, Fragment frg, String title);
+    void setCurrentFragment(Fragment frg, int item);
 
     void onMakeDialog(BaseFragment bf, MessageDialog mD, Object paremeter);
 }

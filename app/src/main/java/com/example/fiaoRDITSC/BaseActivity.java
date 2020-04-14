@@ -8,12 +8,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,8 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     private Firebase _Firebase;
     public String id = "";
     public Object vm;
+    private Fragment currentFrag;
+    public NavigationView navigationView;
 
     public BaseActivity() {
         _Firebase = new Firebase();
@@ -34,10 +39,29 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
                 .replace(R.id.container, frg).commit();
     }
 
+    public Fragment getCurrentFragment() {
+        return currentFrag;
+    }
+
     @Override
-    public void onCallFragmentKey(int key, Fragment frg) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(key, frg).commit();
+    public void onCallFragmentKey(Fragment old_frg, int key, Fragment frg, String title) {
+        currentFrag = frg;
+        getSupportFragmentManager().beginTransaction().replace(key,frg)
+//                .hide(old_frg)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                .add(key, frg)
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
+
+        getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void setCurrentFragment(Fragment frg, int item) {
+        currentFrag = frg;
+        if (navigationView != null) {
+            navigationView.getMenu().getItem(item).setChecked(true);
+        }
     }
 
     @Override

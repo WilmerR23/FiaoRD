@@ -54,6 +54,11 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         view = inflater.inflate(R.layout.crear_prestamo_fragment, container, false);
         fechaInicio = new MyEditTextDatePicker(this,view,mListener,R.id.txtFechaInicio).get_editText();
         monto    = view.findViewById(R.id.txtMonto);
@@ -191,7 +196,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void DialogPositiveCallback(Object parameter) {
-            mListener.onCallFragmentKey(R.id.nav_host_fragment, VerPrestamos.newInstance());
+            mListener.onCallFragmentKey(this,R.id.nav_host_fragment, VerPrestamos.newInstance(),"Prestamos");
     }
 
     public boolean validarDatos() {

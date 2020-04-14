@@ -44,8 +44,16 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     private ConstraintLayout home;
     public static String key;
 
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -59,6 +67,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     }
 
     public void colmaderoInit() {
+        mListener.setCurrentFragment(this,0);
         home.setVisibility(View.VISIBLE);
         list_view = (ListView) root.findViewById(R.id.clientesLv);
         btnBuscarCliente = root.findViewById(R.id.btnBuscarCliente);
@@ -103,7 +112,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
         if (valor) {
             colmaderoInit();
         } else {
-            mListener.onCallFragmentKey(R.id.nav_host_fragment,ClienteFragment.newInstance());
+            mListener.onCallFragmentKey(this,R.id.nav_host_fragment,ClienteFragment.newInstance(),"Mi perfil");
         }
     }
 
@@ -135,7 +144,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     @Override
     public void OnAdd(int itemSelected) {
         setKey(itemSelected);
-        mListener.onCallFragmentKey(R.id.nav_host_fragment, CrearPrestamo.newInstance());
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment, CrearPrestamo.newInstance(),"Crear Prestamo");
        // mListener.onMakeToast("Boton que tendra la funcion de mostrar pantalla de prestamo",Toast.LENGTH_LONG);
     }
 
@@ -164,7 +173,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     @Override
     public void OnSelect(final int itemSelected) {
         setKey(itemSelected);
-        mListener.onCallFragmentKey(R.id.nav_host_fragment,ClienteFragment.newInstance());
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,ClienteFragment.newInstance(),"Perfil Cliente");
 
         //mListener.onMakeToast("Ha elegido el registro en la fila" + itemSelected + 1,Toast.LENGTH_LONG);
     }

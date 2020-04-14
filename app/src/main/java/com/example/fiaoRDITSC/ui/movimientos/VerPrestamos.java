@@ -29,10 +29,16 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
     private ListView list_view;
     private ArrayList<String> labels;
+    private List<CrearPrestamoViewModel> lista;
+    public static CrearPrestamoViewModel vm;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        if (container != null) {
+            container.removeAllViews();
+        }
+
         view = inflater.inflate(R.layout.fragment_ver_prestamos, container, false);
 
         list_view = (ListView) view.findViewById(R.id.prestamosLv);
@@ -59,8 +65,10 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
     public void refreshListView(List<Object> obj) {
         labels = new ArrayList<String>();
+        lista = new ArrayList<>();
         for (int i = 0; i < obj.size(); i++) {
             CrearPrestamoViewModel vm = (CrearPrestamoViewModel) obj.get(i);
+            lista.add(vm);
             labels.add(vm.getDescripcion());
         }
 
@@ -71,7 +79,8 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
     @Override
     public void OnAdd(int itemSelectec) {
-
+            vm = lista.get(itemSelectec);
+            mListener.onCallFragmentKey(this,R.id.nav_host_fragment,RealizarPago.newInstance(),"Realizar Pago");
     }
 
     @Override

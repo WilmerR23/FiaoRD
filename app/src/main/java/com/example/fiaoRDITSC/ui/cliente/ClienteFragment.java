@@ -41,6 +41,12 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        if (container != null) {
+            container.removeAllViews();
+        }
+
+        mListener.setCurrentFragment(this,1);
         View v = inflater.inflate(R.layout.cliente_fragment, container, false);
 
         btnMovimientos = v.findViewById(R.id.btnPrestamos);
@@ -58,22 +64,25 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
 
 
 //        vm = (RegisterViewModel) mListener.getBaseModel();
-        vm = LoginFragment.UserVm;
-        if (HomeFragment.key != "") {
+        if (HomeFragment.key != null) {
             txtApellido.setEnabled(false);
             txtDireccion.setEnabled(false);
             txtCorreo.setEnabled(false);
             txtTelefono.setEnabled(false);
             txtCedula.setEnabled(false);
             txtNombre.setEnabled(false);
-            btnEditarPerfil.setEnabled(false);
-            btnEditarPerfil.setOnClickListener(null);
+            btnEditarPerfil.setVisibility(View.GONE);
+            android.widget.LinearLayout.LayoutParams params = new android.widget.LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 4f);
+            btnMovimientos.setLayoutParams(params);
             ArrayList<String> lista = new ArrayList<String>();
             lista.add("Usuarios");
             String key = HomeFragment.key;
             lista.add(key);
             mListener.Obtener(lista, RegisterViewModel.class, this);
         } else {
+
+            vm = LoginFragment.UserVm;
             setScreenValues();
         }
         return v;
@@ -118,7 +127,7 @@ public class ClienteFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnPrestamos:
-                mListener.onCallFragmentKey(R.id.nav_host_fragment, VerPrestamos.newInstance());
+                mListener.onCallFragmentKey(this,R.id.nav_host_fragment, VerPrestamos.newInstance(),"Prestamos");
                 break;
             case R.id.btnEditarPerfil:
                 if (validarDatos()) {
