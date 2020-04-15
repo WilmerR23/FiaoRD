@@ -45,7 +45,11 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
         ArrayList lista = new ArrayList<String>();
         lista.add("Prestamos");
-        lista.add(HomeFragment.key);
+        if (HomeFragment.key != null) {
+            lista.add(HomeFragment.key);
+        } else {
+            lista.add(LoginFragment.id);
+        }
         _Firebase.ObtenerTodos(lista, CrearPrestamoViewModel.class,mListener,this);
 
         return view;
@@ -71,8 +75,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
             lista.add(vm);
             labels.add(vm.getDescripcion());
         }
-
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,false, R.layout.row_list_view_edit,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,true, false, R.layout.row_list_view_edit,this);
         list_view.setAdapter(adapter);
     }
 
@@ -90,6 +93,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
     @Override
     public void OnSelect(int itemSelected) {
-
+        vm = lista.get(itemSelected);
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,VerMovimientos.newInstance(),"Movimientos");
     }
 }

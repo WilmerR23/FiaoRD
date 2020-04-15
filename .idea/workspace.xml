@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5a47e12-95cb-4a4f-913f-d77ff9ce0656" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerMovimientos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_movimientos.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_list_view_default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,18 +22,21 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/TipoUsuario/TipoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/TipoUsuario/TipoUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/cliente/ClienteFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/cliente/ClienteFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Models/BaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Models/BaseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +56,70 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="104" selection-start-line="104" selection-end-line="104" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1167#1480#0" expanded="true" />
+                <element signature="e#1479#1480#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2075#2076#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5057#5058#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -97,9 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRD/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigoViewModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/prueba.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRD/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRD/ui/home/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRD/Utility/MaskWatcher.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRD/Firebase.java" />
@@ -110,9 +173,7 @@
         <option value="$PROJECT_DIR$/app/google-services.json" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Models/BaseModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/Utility.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/register_fragment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnEditTextDatePicker.java" />
@@ -130,32 +191,37 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamoViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cliente_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/ViewHolder.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_list_view_edit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_prestamos.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/TipoUsuario/TipoUsuario.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/cliente/ClienteFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Models/BaseModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_movimientos.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerMovimientos.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/row_list_view_default.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="240" />
-    <option name="y" value="127" />
+    <option name="y" value="126" />
     <option name="width" value="1440" />
-    <option name="height" value="774" />
+    <option name="height" value="775" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -164,6 +230,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,11 +238,133 @@
               <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
               <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="fiaoRDITSC" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="fiaoRDITSC" type="462c0819:PsiDirectoryNode" />
+              <item name="Interfaces" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="fiaoRDITSC" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="fiaoRDITSC" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="movimientos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="fiaoRDITSC" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="register" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FiaoRD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FiaoRD" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -189,6 +378,7 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
+      <recent name="com.example.fiaoRDITSC.ui.movimientos" />
       <recent name="com.example.fiaoRD" />
     </key>
     <key name="android.template.parentActivityClass">
@@ -358,9 +548,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28590605" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.28590605" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -368,22 +559,22 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49798658" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49597314" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49798658" weight="0.3286119" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49798658" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4919463" visible="true" weight="0.41359773" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4899329" weight="0.41359773" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49932885" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5080537" side_tool="true" visible="true" weight="0.41359773" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50402683" side_tool="true" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49932885" weight="0.3286119" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49798658" weight="0.2549575" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49597314" weight="0.2549575" />
       <window_info anchor="bottom" id="Android Profiler" order="8" sideWeight="0.49932885" weight="0.3286119" />
-      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.4986577" weight="0.3286119" />
+      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49731544" weight="0.3286119" />
       <window_info anchor="bottom" id="Thumbnails" order="10" weight="0.3286119" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.1442953" />
+      <window_info active="true" anchor="right" id="Preview" order="4" visible="true" weight="0.1442953" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
     <layout-to-restore>
@@ -449,27 +640,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
-          <line>238</line>
+          <line>249</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
-          <line>232</line>
+          <line>243</line>
           <properties />
           <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
-          <line>40</line>
-          <properties />
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java</url>
@@ -478,28 +657,10 @@
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java</url>
-          <line>86</line>
-          <properties />
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
           <line>31</line>
           <properties />
           <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java</url>
-          <line>37</line>
-          <properties />
-          <option name="timeStamp" value="126" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java</url>
@@ -508,50 +669,15 @@
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java</url>
-          <line>127</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java</url>
+          <line>47</line>
           <properties />
-          <option name="timeStamp" value="154" />
+          <option name="timeStamp" value="175" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/text/DateFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="356" column="16" selection-start-line="356" selection-start-column="16" selection-end-line="356" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/StringSpinnerMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#272#273#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.0.2/e38e7c85994112b70d4548176128c72b8477c110/appcompat-1.0.2-sources.jar!/androidx/appcompat/widget/AppCompatEditText.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -646,36 +772,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamoViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="115" column="61" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/ViewHolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -685,30 +781,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_list_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="39" selection-end-line="40" selection-end-column="15" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_list_view_edit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_prestamos.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="17" column="59" lean-forward="true" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -760,31 +832,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/TipoUsuario/TipoUsuario.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="92" column="104" selection-start-line="92" selection-start-column="104" selection-end-line="92" selection-end-column="104" />
         </state>
       </provider>
     </entry>
@@ -806,103 +857,10 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-629">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="39" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="76" column="31" lean-forward="true" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.0.0/bcd167792ec03e930d5c8345c99ae07b2627de84/fragment-1.0.0-sources.jar!/androidx/fragment/app/FragmentManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="2274" selection-start-line="2274" selection-end-line="2274" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4484#4485#0" expanded="true" />
-            <element signature="e#4534#4535#0" expanded="true" />
-            <element signature="e#4559#4560#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1882#1883#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="61" column="84" lean-forward="true" selection-start-line="61" selection-start-column="84" selection-end-line="62" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="42" column="54" lean-forward="true" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#940#941#0" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
-            <element signature="e#4510#4511#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,10 +872,217 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamoViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="111" column="3" lean-forward="true" selection-start-line="111" selection-start-column="3" selection-end-line="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_prestamos.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="21" selection-end-line="36" selection-end-column="52" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Utility/list_adapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Models/BaseModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_ver_movimientos.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="89" column="23" selection-start-line="89" selection-start-column="23" selection-end-line="89" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2955#2956#0" expanded="true" />
+            <element signature="e#2982#2983#0" expanded="true" />
+            <element signature="e#4457#4458#0" expanded="true" />
+            <element signature="e#4484#4485#0" expanded="true" />
+            <element signature="e#4534#4535#0" expanded="true" />
+            <element signature="e#4559#4560#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Interfaces/OnFragmentInteractionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/PrestamistaColmaderoCodigo/PrestamistaColmaderoCodigo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="90" column="12" lean-forward="true" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/home/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="134" column="87" selection-start-line="134" selection-start-column="87" selection-end-line="134" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/CrearPrestamo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="180" column="8" selection-start-line="180" selection-start-column="8" selection-end-line="182" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPagoViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#695#696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerMovimientos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="72" column="125" selection-start-line="72" selection-start-column="104" selection-end-line="72" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_list_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_list_view_edit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="17" column="34" lean-forward="true" selection-end-line="32" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_list_view_default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/VerPrestamos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2075#2076#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/Firebase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1167#1480#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/register/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1041">
+          <caret line="129" column="22" lean-forward="true" selection-start-line="129" selection-start-column="22" selection-end-line="129" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/login/LoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="92" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/fiaoRDITSC/ui/movimientos/RealizarPago.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5057#5058#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/realizar_pago_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="84" column="66" selection-start-line="84" selection-start-column="58" selection-end-line="84" selection-end-column="66" />
+        <state relative-caret-position="197">
+          <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />

@@ -81,7 +81,15 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
             lista.add(LoginFragment.id);
             String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
             PrestamistaColmaderoCodigoViewModel vm = new PrestamistaColmaderoCodigoViewModel(LoginFragment.id,LoginFragment.Descripcion);
-            _Firebase.SaveBaseModelPush(vm,key,"PrestamistaClientes","");
+
+
+
+            ArrayList lista2 = new ArrayList();
+
+            lista2.add("PrestamistaClientes");
+            lista2.add(key);
+
+            _Firebase.SaveBaseModelPush(vm,lista2,"");
 
             RegisterViewModel rbm = (RegisterViewModel) mListener.getBaseModel();
             mListener.onCallIntentWithData(MainActivity.class, rbm);

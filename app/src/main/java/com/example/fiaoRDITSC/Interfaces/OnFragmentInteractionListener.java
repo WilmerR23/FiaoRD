@@ -1,6 +1,7 @@
 package com.example.fiaoRDITSC.Interfaces;
 
 import android.content.Context;
+import android.view.Menu;
 
 import androidx.fragment.app.Fragment;
 
@@ -28,4 +29,5 @@ public interface OnFragmentInteractionListener {
     void setCurrentFragment(Fragment frg, int item);
 
     void onMakeDialog(BaseFragment bf, MessageDialog mD, Object paremeter);
+    Menu getMenu();
 }

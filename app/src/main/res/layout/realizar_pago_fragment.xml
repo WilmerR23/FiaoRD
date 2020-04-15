@@ -66,10 +66,41 @@
                 android:enabled="false"
                 android:ems="10"
                 android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/lblMontoADeber"
+                app:layout_constraintBottom_toTopOf="@+id/lblTotalPagado"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblMonto" />
+
+
+            <TextView
+                android:id="@+id/lblTotalPagado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Total pagado"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMonto"/>
+
+            <EditText
+                android:id="@+id/txtTotalPagado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72px"
+                android:layout_marginLeft="72px"
+                android:layout_marginEnd="72px"
+                android:layout_marginRight="72px"
+                android:enabled="false"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintBottom_toTopOf="@+id/lblMontoADeber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblTotalPagado" />
+
 
             <TextView
                 android:id="@+id/lblMontoADeber"
@@ -82,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.092"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTotalPagado" />
 
 
             <EditText

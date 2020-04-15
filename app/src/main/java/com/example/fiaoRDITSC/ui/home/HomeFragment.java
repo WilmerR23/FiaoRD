@@ -112,6 +112,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
         if (valor) {
             colmaderoInit();
         } else {
+            mListener.getMenu().findItem(R.id.nav_home).setVisible(false);
             mListener.onCallFragmentKey(this,R.id.nav_host_fragment,ClienteFragment.newInstance(),"Mi perfil");
         }
     }
@@ -131,7 +132,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
             labels.add(vm.getDescripcion());
         }
 
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels, true,R.layout.row_list_view, this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels, true,true,R.layout.row_list_view, this);
         list_view.setAdapter(adapter);
     }
 

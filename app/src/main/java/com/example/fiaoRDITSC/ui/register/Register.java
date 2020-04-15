@@ -124,7 +124,9 @@ public class Register extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.lblIniciaSesion:
-                mListener.onCallFragment(LoginFragment.newInstance());
+//                mListener.onCallFragment(LoginFragment.newInstance());
+                mListener.onCallFragmentKey(this,R.id.container,LoginFragment.newInstance(),"Inicio sesion");
+
                 break;
         }
     }
@@ -157,7 +159,9 @@ public class Register extends BaseFragment implements View.OnClickListener {
             lista.add(key);
             String cadena = mListener.Save(vm, lista, "Usuario registrado con exito.");
 
-            mListener.onCallFragment(LoginFragment.newInstance());
+//            mListener.onCallFragment(LoginFragment.newInstance());
+
+            mListener.onCallFragmentKey(this,R.id.container,LoginFragment.newInstance(),"Inicio sesion");
             mListener.onMakeToast(cadena, Toast.LENGTH_SHORT);
         }
     }

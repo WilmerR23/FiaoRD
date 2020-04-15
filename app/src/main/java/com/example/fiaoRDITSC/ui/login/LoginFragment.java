@@ -90,7 +90,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 }
                 break;
             case R.id.txtRegistrateAqui:
-                mListener.onCallFragmentKey(this,R.id.nav_host_fragment,Register.newInstance(),"Registro");
+                mListener.onCallFragmentKey(this,R.id.container,Register.newInstance(),"Registro");
                 break;
         }
     }

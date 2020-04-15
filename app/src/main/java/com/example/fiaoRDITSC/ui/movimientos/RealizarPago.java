@@ -13,18 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fiaoRDITSC.Firebase;
 import com.example.fiaoRDITSC.Interfaces.OnEditTextDatePicker;
 import com.example.fiaoRDITSC.R;
 import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.Utility.MyEditTextDatePicker;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.home.HomeFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RealizarPago extends BaseFragment implements View.OnClickListener, OnEditTextDatePicker {
 
-    private EditText fechaPago, montoTotal, montoADeber, txtMontoPago;
+    private EditText fechaPago, montoTotal, montoADeber, txtMontoPago, txtTotalPagado;
+    private TextView lblMontoPago, lblFechaPago;
     private Button btnGuardar;
+    private CrearPrestamoViewModel crear_prestamo_vm;
 
     public static RealizarPago newInstance() {
         return new RealizarPago();
@@ -43,16 +52,30 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
         montoTotal = view.findViewById(R.id.txtMonto);
         montoADeber = view.findViewById(R.id.txtMontoADeber);
         txtMontoPago = view.findViewById(R.id.txtMontoPago);
+        txtTotalPagado= view.findViewById(R.id.txtTotalPagado);
         btnGuardar = view.findViewById(R.id.btnRealizarPago);
 
-        CrearPrestamoViewModel vm = VerPrestamos.vm;
+        crear_prestamo_vm = VerPrestamos.vm;
 
-        if (vm != null) {
-            montoTotal.setText(Integer.toString(vm.getTotal()));
-            montoADeber.setText(Integer.toString(vm.getTotal() - vm.getTotalPagado()));
+        lblMontoPago = view.findViewById(R.id.lblMontoPago);
+        lblFechaPago = view.findViewById(R.id.lblFechaPago);
+
+
+        if (crear_prestamo_vm != null) {
+            montoTotal.setText(Integer.toString(crear_prestamo_vm.getTotal()));
+            montoADeber.setText(Integer.toString(crear_prestamo_vm.getTotal() - crear_prestamo_vm.getTotalPagado()));
+            txtTotalPagado.setText(Integer.toString(crear_prestamo_vm.getTotalPagado()));
         }
 
-        btnGuardar.setOnClickListener(this);
+        if(HomeFragment.key != null) {
+            btnGuardar.setOnClickListener(this);
+        } else {
+            txtMontoPago.setVisibility(View.GONE);
+            fechaPago.setVisibility(View.GONE);
+            lblMontoPago.setVisibility(View.GONE);
+            lblFechaPago.setVisibility(View.GONE);
+            btnGuardar.setVisibility(View.GONE);
+        }
 
         return view;
     }
@@ -79,41 +102,34 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
     }
 
     public void realizarPago() {
-//        CrearPrestamoViewModel vm = new CrearPrestamoViewModel(
-//                Integer.parseInt(monto.getText().toString()),
-//                Integer.parseInt(interes.getText().toString()),
-//                Integer.parseInt(periodos.getText().toString()),
-//                TipoPago,
-//                fechaInicio.getText().toString(),
-//                fechaFin.getText().toString(),
-//                Integer.parseInt(total.getText().toString()),
-//                0,
-//                LoginFragment.id
-//        );
-//
-//        ArrayList<String> lista = new ArrayList<String>();
-//        lista.add("Prestamos");
-//        String key = HomeFragment.key;
-//        lista.add(key);
-//        Calendar calendar = Calendar.getInstance();
-//        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-//        String tiempo = formatter.format(calendar.getTime());
-//        lista.add("F" + vm.getFechaInicio().replaceAll("/", "_") + tiempo);
-//        vm.setFechaInicio(vm.getFechaInicio() + tiempo);
-//        String cadena = mListener.Save(vm, lista, "");
-//
-//        mListener.onMakeDialog(this,
-//                new MessageDialog("Importante",
-//                        "Prestamo registrado con exito. Pulse aceptar para ver el prestamo",
-//                        "Aceptar",
-//                        "Cancelar"),
-//                null);
+        RealizarPagoViewModel vm = new RealizarPagoViewModel(
+                Integer.parseInt(txtMontoPago.getText().toString()),
+                fechaPago.getText().toString()
+        );
+
+        ArrayList<String> lista = new ArrayList<String>();
+        lista.add("MovimientosPrestamos");
+        lista.add(crear_prestamo_vm.getId());
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        String tiempo = formatter.format(calendar.getTime());
+        vm.setId("MP_" + tiempo);
+
+        String cadena = _Firebase.SaveBaseModelPush(vm, lista, "");
+
+        mListener.onMakeDialog(this,
+                new MessageDialog("Importante",
+                        "Pago registrado con exito. Pulse aceptar para ver los movimientos del prestamo",
+                        "Aceptar",
+                        "Cancelar"),
+                null);
 
     }
 
     @Override
     public void DialogPositiveCallback(Object parameter) {
-        mListener.onCallFragmentKey(this, R.id.nav_host_fragment, VerPrestamos.newInstance(), "Prestamos");
+        mListener.onCallFragmentKey(this, R.id.nav_host_fragment, VerMovimientos.newInstance(), "Movimientos");
     }
 
     public boolean validarDatos() {

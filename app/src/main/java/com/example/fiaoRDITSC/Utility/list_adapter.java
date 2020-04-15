@@ -19,15 +19,16 @@ public class list_adapter extends ArrayAdapter<String>  {
     private Context context;
     private ArrayList<String> labels;
     private OnListViewListener _Listener;
-    private boolean _show;
+    private boolean _show_right_button, _show_left_button;
     private int _layout;
 
-    public list_adapter(Context context, ArrayList<String> labels, boolean show, int layout, OnListViewListener Listener) {
+    public list_adapter(Context context, ArrayList<String> labels, boolean show_left_button,boolean show_right_button, int layout, OnListViewListener Listener) {
         super(context, R.layout.row_list_view, labels);
         this.context = context;
         this.labels = labels;
         this._Listener = Listener;
-        this._show = show;
+        this._show_right_button = show_right_button;
+        this._show_left_button = show_left_button;
         this._layout = layout;
     }
 
@@ -48,8 +49,12 @@ public class list_adapter extends ArrayAdapter<String>  {
             rowView = inflater.inflate(_layout, null, true);
             holder = new ViewHolder();
             holder.textoContenido = (TextView) rowView.findViewById(R.id.textView1);
-            holder.btnLeft = (ImageButton) rowView.findViewById(R.id.imageButton1);
-            if (_show) {
+
+            if (_show_left_button) {
+                holder.btnLeft = (ImageButton) rowView.findViewById(R.id.imageButton1);
+            }
+
+            if (_show_right_button) {
             holder.btnRight = (ImageButton) rowView.findViewById(R.id.imageButton2);
             }
 
@@ -67,14 +72,17 @@ public class list_adapter extends ArrayAdapter<String>  {
                 _Listener.OnSelect(position);
             }
         });
-        holder.btnLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _Listener.OnAdd(position);
-            }
-        });
 
-        if (_show) {
+        if (_show_left_button) {
+            holder.btnLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _Listener.OnAdd(position);
+                }
+            });
+        }
+
+        if (_show_right_button) {
             holder.btnRight.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

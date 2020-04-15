@@ -54,8 +54,15 @@ public class Firebase {
         return CadenaOutput;
     }
 
-    public String SaveBaseModelPush(BaseModel value, String id, String parent, final String mensaje) {
-        getInstance().child(parent).child(id).child(value.getId()).setValue(value, new DatabaseReference.CompletionListener() {
+    public String SaveBaseModelPush(BaseModel value, ArrayList<String> lista, final String mensaje) {
+
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        dref.child(value.getId()).setValue(value, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 CadenaOutput = databaseError != null ? "Ha ocurrido un error: " + databaseError.getMessage() : mensaje;
@@ -105,9 +112,13 @@ public class Firebase {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     List<Object> lista = new ArrayList<Object>();
-                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                        lista.add(postSnapshot.getValue(clase));
-                    }
+
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            BaseModel vm = (BaseModel) postSnapshot.getValue(clase);
+                            String key = postSnapshot.getKey();
+                            vm.setId(key);
+                            lista.add(vm);
+                        }
                     dataFound.onDataTodosFound(lista,listener);
                 }
             }

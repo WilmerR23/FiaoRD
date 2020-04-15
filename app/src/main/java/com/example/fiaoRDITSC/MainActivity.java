@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
+        nav_Menu = navigationView.getMenu();
         setupDrawerContent(navigationView);
     }
 

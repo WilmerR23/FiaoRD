@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Menu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     public Object vm;
     private Fragment currentFrag;
     public NavigationView navigationView;
+    public Menu nav_Menu;
 
     public BaseActivity() {
         _Firebase = new Firebase();
@@ -81,6 +83,11 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
             }
         });
         dialogo1.show();
+    }
+
+    @Override
+    public Menu getMenu() {
+        return nav_Menu;
     }
 
 
