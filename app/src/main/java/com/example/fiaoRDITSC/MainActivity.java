@@ -101,4 +101,17 @@ public class MainActivity extends BaseActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public void onBackPressed() {
+        Class cs = getCurrentFragment().getClass();
+        if (cs == ClienteFragment.class && HomeFragment.isColmadero) {
+            this.onCallFragmentKey(getCurrentFragment(),R.id.nav_host_fragment,HomeFragment.newInstance(),"Clientes");
+        } else if (cs == HomeFragment.class || !HomeFragment.isColmadero) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

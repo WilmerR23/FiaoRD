@@ -43,6 +43,8 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     private View root;
     private ConstraintLayout home;
     public static String key;
+    public static boolean isColmadero;
+    public static PrestamistaColmaderoCodigoViewModel model;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -58,8 +60,8 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         root = inflater.inflate(R.layout.fragment_home, container, false);
         home = root.findViewById(R.id.constraintLayout_Home);
-        home.setVisibility(View.INVISIBLE);
 
+        home.setVisibility(View.INVISIBLE);
         _Firebase.ExisteKey(LoginFragment.id,"CodigoUsuarioPrestamista",this);
 
 
@@ -109,6 +111,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
 
     @Override
     public void receiveExisteKey(boolean valor) {
+        isColmadero = valor;
         if (valor) {
             colmaderoInit();
         } else {
@@ -138,7 +141,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
 
     public void setKey(int itemSelected) {
         home.setVisibility(View.INVISIBLE);
-        PrestamistaColmaderoCodigoViewModel model = prestamistaClientesList.get(itemSelected);
+        model = prestamistaClientesList.get(itemSelected);
         key = model.getId();
     }
 

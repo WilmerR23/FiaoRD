@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fiaoRDITSC.Interfaces.OnEditTextDatePicker;
@@ -46,6 +47,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
     private EditText fechaInicio,monto,interes,total,periodos,fechaFin;
     private int TipoPago = 1, dias;
     private Button btnCalcular, btnGuardar;
+    private TextView lblNombreCliente;
 
     public static CrearPrestamo newInstance() {
         return new CrearPrestamo();
@@ -69,6 +71,11 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
 
         btnCalcular = view.findViewById(R.id.btnCalcularPrestamo);
         btnGuardar = view.findViewById(R.id.btnCrearPrestamo);
+
+        lblNombreCliente = view.findViewById(R.id.lblNombrecliente);
+        if (HomeFragment.model != null) {
+            lblNombreCliente.setText(HomeFragment.model.getCliente());
+        }
 
         btnCalcular.setOnClickListener(this);
         btnGuardar.setOnClickListener(this);

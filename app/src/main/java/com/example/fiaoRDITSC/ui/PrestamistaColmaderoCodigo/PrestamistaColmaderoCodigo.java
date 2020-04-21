@@ -80,7 +80,7 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
             lista.add("Usuarios");
             lista.add(LoginFragment.id);
             String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
-            PrestamistaColmaderoCodigoViewModel vm = new PrestamistaColmaderoCodigoViewModel(LoginFragment.id,LoginFragment.Descripcion);
+            PrestamistaColmaderoCodigoViewModel vm = new PrestamistaColmaderoCodigoViewModel(LoginFragment.id,LoginFragment.NombreUsuario,LoginFragment.NombreUsuario + " " + LoginFragment.Descripcion);
 
 
 

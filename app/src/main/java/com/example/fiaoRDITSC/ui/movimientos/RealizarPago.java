@@ -34,6 +34,7 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
     private TextView lblMontoPago, lblFechaPago;
     private Button btnGuardar;
     private CrearPrestamoViewModel crear_prestamo_vm;
+    private TextView lblNombreCliente;
 
     public static RealizarPago newInstance() {
         return new RealizarPago();
@@ -57,6 +58,8 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
 
         crear_prestamo_vm = VerPrestamos.vm;
 
+        lblNombreCliente = view.findViewById(R.id.lblNombrecliente);
+
         lblMontoPago = view.findViewById(R.id.lblMontoPago);
         lblFechaPago = view.findViewById(R.id.lblFechaPago);
 
@@ -65,6 +68,10 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
             montoTotal.setText(Integer.toString(crear_prestamo_vm.getTotal()));
             montoADeber.setText(Integer.toString(crear_prestamo_vm.getTotal() - crear_prestamo_vm.getTotalPagado()));
             txtTotalPagado.setText(Integer.toString(crear_prestamo_vm.getTotalPagado()));
+        }
+
+        if (HomeFragment.model != null) {
+            lblNombreCliente.setText(HomeFragment.model.getCliente());
         }
 
         if(HomeFragment.key != null) {
@@ -102,10 +109,13 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
     }
 
     public void realizarPago() {
+        int montoPagado = Integer.parseInt(txtMontoPago.getText().toString());
+
         RealizarPagoViewModel vm = new RealizarPagoViewModel(
-                Integer.parseInt(txtMontoPago.getText().toString()),
+                montoPagado,
                 fechaPago.getText().toString()
         );
+
 
         ArrayList<String> lista = new ArrayList<String>();
         lista.add("MovimientosPrestamos");
@@ -117,6 +127,19 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
         vm.setId("MP_" + tiempo);
 
         String cadena = _Firebase.SaveBaseModelPush(vm, lista, "");
+
+
+        String key = "";
+        if (HomeFragment.model != null) {
+            key = HomeFragment.model.getId();
+        }
+
+        int nuevoTotalPagado = Integer.parseInt(txtTotalPagado.getText().toString()) + montoPagado;
+        ArrayList<String> listaPrestamos = new ArrayList<String>();
+        listaPrestamos.add("Prestamos");
+        listaPrestamos.add(key);
+        listaPrestamos.add(crear_prestamo_vm.getId());
+        _Firebase.UpdateKey(listaPrestamos, "totalPagado",nuevoTotalPagado,"");
 
         mListener.onMakeDialog(this,
                 new MessageDialog("Importante",

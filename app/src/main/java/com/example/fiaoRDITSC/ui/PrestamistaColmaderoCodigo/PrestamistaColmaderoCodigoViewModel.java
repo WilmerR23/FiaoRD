@@ -22,8 +22,8 @@ public class PrestamistaColmaderoCodigoViewModel extends BaseModel {
     }
     public void setDescripcion(String Descripcion) { this.Descripcion = Descripcion; }
 
-    public PrestamistaColmaderoCodigoViewModel(String Cliente, String Descripcion) {
-        this.setId(Cliente);
+    public PrestamistaColmaderoCodigoViewModel(String id,String Cliente, String Descripcion) {
+        this.setId(id);
         this.Cliente = Cliente;
         this.Descripcion = Descripcion;
     }
