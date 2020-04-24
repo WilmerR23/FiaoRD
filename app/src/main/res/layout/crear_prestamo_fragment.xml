@@ -233,9 +233,6 @@
 
             </LinearLayout>
 
-
-
-
             <TextView
                 android:id="@+id/lblTotal"
                 android:layout_width="wrap_content"
@@ -257,10 +254,40 @@
                 android:ems="10"
                 android:inputType="number"
                 android:enabled="false"
-                android:maxLength="10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblTotal"
+
+                android:layout_marginStart="72px"
+                android:layout_marginLeft="72px"
+                android:layout_marginEnd="72px"
+                android:layout_marginRight="72px"/>
+
+
+            <TextView
+                android:id="@+id/lblMontoCuota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Monto cuota"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTotal"/>
+
+
+            <EditText
+                android:id="@+id/txtMontoCuota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:enabled="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMontoCuota"
 
                 android:layout_marginStart="72px"
                 android:layout_marginLeft="72px"
@@ -281,7 +308,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@+id/txtTotal"
+                app:layout_constraintTop_toBottomOf="@+id/txtMontoCuota"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <Button

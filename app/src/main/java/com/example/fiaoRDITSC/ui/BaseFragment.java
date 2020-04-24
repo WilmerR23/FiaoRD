@@ -15,6 +15,8 @@ public abstract class BaseFragment extends Fragment {
     protected OnFragmentInteractionListener mListener;
     protected Firebase _Firebase;
     public View view;
+    public String title;
+    public BaseFragment prev_Fragment;
 
     public OnFragmentInteractionListener getListener() {
         return mListener;

@@ -44,7 +44,7 @@ import java.util.List;
 public class CrearPrestamo extends BaseFragment implements View.OnClickListener,OnEditTextDatePicker, AdapterView.OnItemSelectedListener {
 
     private CrearPrestamoViewModel mViewModel;
-    private EditText fechaInicio,monto,interes,total,periodos,fechaFin;
+    private EditText fechaInicio,monto,interes,total,periodos,fechaFin, montoCuota;
     private int TipoPago = 1, dias;
     private Button btnCalcular, btnGuardar;
     private TextView lblNombreCliente;
@@ -68,6 +68,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
         total    = view.findViewById(R.id.txtTotal);
         periodos = view.findViewById(R.id.txtPeriodoPago);
         fechaFin = view.findViewById(R.id.txtFechaFin);
+        montoCuota = view.findViewById(R.id.txtMontoCuota);
 
         btnCalcular = view.findViewById(R.id.btnCalcularPrestamo);
         btnGuardar = view.findViewById(R.id.btnCrearPrestamo);
@@ -178,7 +179,8 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
                  fechaFin.getText().toString(),
                  Integer.parseInt(total.getText().toString()),
                  0,
-                 LoginFragment.id
+                 LoginFragment.id,
+                 Integer.parseInt(montoCuota.getText().toString())
          );
 
         ArrayList<String> lista = new ArrayList<String>();
@@ -203,7 +205,18 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void DialogPositiveCallback(Object parameter) {
+        clearValues();
             mListener.onCallFragmentKey(this,R.id.nav_host_fragment, VerPrestamos.newInstance(),"Prestamos");
+    }
+
+    public void clearValues() {
+        monto.setText("");
+        interes.setText("");
+        periodos.setText("");
+        fechaFin.setText("");
+        total.setText("");
+        montoCuota.setText("");
+        fechaInicio.setText("");
     }
 
     public boolean validarDatos() {
@@ -222,5 +235,8 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
             int MontoTotal = (int) (montoValue + totalInteres);
             String totalValue = Integer.toString(MontoTotal);
             total.setText(totalValue);
+
+            int cuota = MontoTotal / Integer.parseInt(periodos.getText().toString());
+            montoCuota.setText(Integer.toString(cuota));
     }
 }

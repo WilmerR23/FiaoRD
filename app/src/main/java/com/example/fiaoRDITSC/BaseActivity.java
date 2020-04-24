@@ -27,7 +27,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     private Firebase _Firebase;
     public String id = "";
     public Object vm;
-    private Fragment currentFrag;
+    private BaseFragment currentFrag;
     public NavigationView navigationView;
     public Menu nav_Menu;
 
@@ -41,13 +41,15 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
                 .replace(R.id.container, frg).commit();
     }
 
-    public Fragment getCurrentFragment() {
+    public BaseFragment getCurrentFragment() {
         return currentFrag;
     }
 
     @Override
-    public void onCallFragmentKey(Fragment old_frg, int key, Fragment frg, String title) {
+    public void onCallFragmentKey(BaseFragment old_frg, int key, BaseFragment frg, String title) {
         currentFrag = frg;
+        old_frg.title = getSupportActionBar().getTitle().toString();
+        currentFrag.prev_Fragment = old_frg;
         getSupportFragmentManager().beginTransaction().replace(key,frg)
 //                .hide(old_frg)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
@@ -58,8 +60,12 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
         getSupportActionBar().setTitle(title);
     }
 
+    public void setCurrentFragment(BaseFragment frg) {
+        this.currentFrag = frg;
+    }
+
     @Override
-    public void setCurrentFragment(Fragment frg, int item) {
+    public void setCurrentFragment(BaseFragment frg, int item) {
         currentFrag = frg;
         if (navigationView != null) {
             navigationView.getMenu().getItem(item).setChecked(true);

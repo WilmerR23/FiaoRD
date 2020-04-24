@@ -9,7 +9,7 @@ import java.util.Date;
 public class CrearPrestamoViewModel extends BaseModel {
     // TODO: Implement the ViewModel
 
-    public CrearPrestamoViewModel(int monto, int interes, int periodos, int tipoPago, String fechaInicio, String fechaFin, int total, int totalPagado, String prestamista) {
+    public CrearPrestamoViewModel(int monto, int interes, int periodos, int tipoPago, String fechaInicio, String fechaFin, int total, int totalPagado, String prestamista, int cuota) {
         Monto = monto;
         Interes = interes;
         Periodos = periodos;
@@ -19,6 +19,7 @@ public class CrearPrestamoViewModel extends BaseModel {
         Total = total;
         TotalPagado = totalPagado;
         Prestamista = prestamista;
+        Cuota = cuota;
     }
 
     private int Monto;
@@ -30,7 +31,15 @@ public class CrearPrestamoViewModel extends BaseModel {
     private String Prestamista;
     private int Total;
     private int TotalPagado;
+    private int Cuota;
 
+    public int getCuota() {
+        return Cuota;
+    }
+
+    public void setCuota(int cuota) {
+        Cuota = cuota;
+    }
 
     public void setPrestamista(String prestamista) {
         Prestamista = prestamista;

@@ -11,8 +11,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.fiaoRDITSC.Models.BaseModel;
+import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.PrestamistaCliente.PrestamistaCliente;
 import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
+import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamo;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -39,7 +42,7 @@ public class MainActivity extends BaseActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_perfil)
+                R.id.nav_home, R.id.nav_perfil,R.id.nav_prestamista)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -70,6 +73,9 @@ public class MainActivity extends BaseActivity {
             case R.id.nav_perfil:
                 HomeFragment.key = null;
                 this.onCallFragmentKey(this.getCurrentFragment(),R.id.nav_host_fragment, ClienteFragment.newInstance(), "Mi perfil");
+                break;
+            case R.id.nav_prestamista:
+                this.onCallFragmentKey(this.getCurrentFragment(),R.id.nav_host_fragment, PrestamistaCliente.newInstance(), "Mis Prestamistas");
                 break;
         }
         // Highlight the selected item has been done by NavigationView
@@ -105,11 +111,14 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Class cs = getCurrentFragment().getClass();
-        if (cs == ClienteFragment.class && HomeFragment.isColmadero) {
+        if ((cs == ClienteFragment.class || cs == CrearPrestamo.class) && HomeFragment.isColmadero) {
             this.onCallFragmentKey(getCurrentFragment(),R.id.nav_host_fragment,HomeFragment.newInstance(),"Clientes");
         } else if (cs == HomeFragment.class || !HomeFragment.isColmadero) {
             finish();
         } else {
+            BaseFragment bF = getCurrentFragment();
+            getSupportActionBar().setTitle(bF.prev_Fragment.title);
+            setCurrentFragment(bF.prev_Fragment);
             super.onBackPressed();
         }
     }
