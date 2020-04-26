@@ -4,14 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblPrestamistas"
+        android:text="Prestamistas"
+        android:textSize="34dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/prestamistaLv"
+        app:layout_constraintBottom_toTopOf="parent"
+
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/prestamistaLv"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrestamistas"
+        />
+
     <Button
         android:id="@+id/btnAddPrestamista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prestamistaLv"
         android:layout_marginTop="30dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="Añadir prestamista" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

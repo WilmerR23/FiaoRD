@@ -92,7 +92,7 @@ public class Firebase {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                    String error = databaseError.getMessage();
+                     listener.onErrorMessage(databaseError.getMessage());
             }
         });
     }
@@ -258,17 +258,49 @@ public class Firebase {
         });
     }
 
+    public void ObtenerKeysPorFiltro(ArrayList<String> lista, String key, String child, final BaseFragment listener) {
 
-    public void ObtenerKeyPorFiltro(String codigo, String id, String child, final Class clase, final BaseFragment listener) {
-        final Query query = getInstance().child(child).orderByChild(codigo).equalTo(id);
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        final Query query = dref.orderByKey().equalTo(key);
+        final ArrayList<String> listaKeys = new ArrayList<>();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
                         String key = childSnapshot.getKey();
-                        listener.receiveObtenerPorFiltroData(key);
-                        break;
+                        listaKeys.add(key);
+                    }
+                    listener.receiveObtenerKeysPorFiltro(listaKeys);
+                }
+
+                query.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                listener.onErrorMessage(databaseError.getMessage());
+            }
+        });
+    }
+
+
+    public void ObtenerKeyPorFiltro(String codigo, String id, String child, final Class clase, final BaseFragment listener) {
+        final Query query = getInstance().child(child).orderByChild(codigo).equalTo(id);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                        String key = childSnapshot.getKey();
+                        BaseModel vm = (BaseModel) childSnapshot.getValue(clase);
+                        vm.setId(key);
+                    listener.receiveObtenerPorFiltroData(vm);
                     }
                 } else {
                     listener.receiveObtenerPorFiltroData(null);

@@ -2,11 +2,14 @@ package com.example.fiaoRDITSC.Utility;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.fiaoRDITSC.Interfaces.OnListViewListener;
 import com.example.fiaoRDITSC.R;
@@ -65,6 +68,10 @@ public class list_adapter extends ArrayAdapter<String>  {
         }
 
         holder.textoContenido.setText(labels.get(position));
+        if (position == 1) {
+            LinearLayout ll = rowView.findViewById(R.id.RelativeLayout1);
+            ll.setBackgroundColor(Color.parseColor("#33FF0000"));
+        }
 
         holder.textoContenido.setOnClickListener(new View.OnClickListener() {
             @Override

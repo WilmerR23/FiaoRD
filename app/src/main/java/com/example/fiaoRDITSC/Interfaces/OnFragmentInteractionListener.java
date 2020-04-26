@@ -30,4 +30,6 @@ public interface OnFragmentInteractionListener {
 
     void onMakeDialog(BaseFragment bf, MessageDialog mD, Object paremeter);
     Menu getMenu();
+    BaseFragment getCurrentFragment();
+
 }

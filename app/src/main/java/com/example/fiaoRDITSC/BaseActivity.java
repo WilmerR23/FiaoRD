@@ -135,6 +135,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     public void onCallIntent(Class clase) {
         Intent i = new Intent(this, clase);
         startActivity(i);
+        finish();
     }
 
     @Override

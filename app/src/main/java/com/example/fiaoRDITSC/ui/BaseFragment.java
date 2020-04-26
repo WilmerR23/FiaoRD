@@ -2,12 +2,14 @@ package com.example.fiaoRDITSC.ui;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.fiaoRDITSC.Firebase;
 import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseFragment extends Fragment {
@@ -48,5 +50,11 @@ public abstract class BaseFragment extends Fragment {
     public void receiveExisteKey(boolean valor) {}
 
     public void DialogPositiveCallback(Object paremeter) {}
+
+    public void receiveObtenerKeysPorFiltro(ArrayList<String> lista) {}
+
+    public void onErrorMessage(String errorMessage) {
+        mListener.onMakeToast(errorMessage, Toast.LENGTH_LONG);
+    }
 
 }

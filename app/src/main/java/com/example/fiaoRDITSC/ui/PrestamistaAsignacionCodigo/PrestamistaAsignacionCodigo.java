@@ -27,6 +27,7 @@ public class PrestamistaAsignacionCodigo extends BaseFragment {
     private PrestamistaAsignacionCodigoViewModel mViewModel;
     private EditText etAsignacionCodigo;
     private Button btnIngresar;
+    private String codigo;
 
     public static PrestamistaAsignacionCodigo newInstance() {
         return new PrestamistaAsignacionCodigo();
@@ -43,10 +44,17 @@ public class PrestamistaAsignacionCodigo extends BaseFragment {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList lista = new ArrayList();
-                lista.add("Usuarios");
-                lista.add(LoginFragment.id);
-                String msj = mListener.UpdateKey(lista,"primerIngreso", false, null);
+                PrestamistaAsignacionCodigoViewModel vm = new PrestamistaAsignacionCodigoViewModel(codigo,LoginFragment.UserVm.getNombre() + " " + LoginFragment.UserVm.getApellido());
+                ArrayList<String> lista = new ArrayList<String>();
+                lista.add("CodigoUsuarioPrestamista");
+                String key = LoginFragment.id;
+                lista.add(key);
+                mListener.Save(vm, lista,"");
+
+                ArrayList lista2 = new ArrayList();
+                lista2.add("Usuarios");
+                lista2.add(LoginFragment.id);
+                String msj = mListener.UpdateKey(lista2,"primerIngreso", false, null);
                 mListener.onCallIntent(MainActivity.class);
             }
         });
@@ -65,13 +73,7 @@ public class PrestamistaAsignacionCodigo extends BaseFragment {
 
     @Override
     public void receiveChildrenCount(int count) {
-        String codigo = String.format("%04d", count + 1);
-        PrestamistaAsignacionCodigoViewModel vm = new PrestamistaAsignacionCodigoViewModel(codigo);
-        ArrayList<String> lista = new ArrayList<String>();
-        lista.add("CodigoUsuarioPrestamista");
-        String key = LoginFragment.id;
-        lista.add(key);
-        mListener.Save(vm, lista,"");
+        codigo = String.format("%04d", count + 1);
         etAsignacionCodigo.setText(codigo);
     }
 

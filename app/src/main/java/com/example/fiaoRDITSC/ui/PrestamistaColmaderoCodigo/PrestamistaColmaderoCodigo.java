@@ -19,6 +19,9 @@ import com.example.fiaoRDITSC.MainActivity;
 import com.example.fiaoRDITSC.R;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.PrestamistaAsignacionCodigo.PrestamistaAsignacionCodigoViewModel;
+import com.example.fiaoRDITSC.ui.PrestamistaCliente.PrestamistaCliente;
+import com.example.fiaoRDITSC.ui.PrestamistaCliente.PrestamistaClienteViewModel;
+import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
 import com.example.fiaoRDITSC.ui.register.Register;
 import com.example.fiaoRDITSC.ui.register.RegisterViewModel;
@@ -31,6 +34,7 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
     private Button btnIngresar;
     private EditText edCodigo;
     private String key;
+    private PrestamistaAsignacionCodigoViewModel model;
 
     public static PrestamistaColmaderoCodigo newInstance() {
         return new PrestamistaColmaderoCodigo();
@@ -61,7 +65,8 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
     @Override
     public void receiveObtenerPorFiltroData(Object obj) {
        if (obj != null) {
-            key = (String) obj;
+            model = ((PrestamistaAsignacionCodigoViewModel) obj);
+            key = model.getId();
            _Firebase.ExisteValor(key,"PrestamistaClientes","cliente",LoginFragment.id,this);
         } else {
             mListener.onMakeToast("Este codigo no existe.", Toast.LENGTH_LONG);
@@ -91,8 +96,22 @@ public class PrestamistaColmaderoCodigo extends BaseFragment {
 
             _Firebase.SaveBaseModelPush(vm,lista2,"");
 
-            RegisterViewModel rbm = (RegisterViewModel) mListener.getBaseModel();
-            mListener.onCallIntentWithData(MainActivity.class, rbm);
+
+            ArrayList lista3 = new ArrayList();
+
+            lista3.add("ClientePrestamistas");
+            lista3.add(LoginFragment.id);
+
+            PrestamistaClienteViewModel modelClientePrestamista = new PrestamistaClienteViewModel(model.getId(),model.getNombreCompleto());
+
+            _Firebase.SaveBaseModelPush(modelClientePrestamista,lista3,"");
+
+            if (mListener.getCurrentFragment().prev_Fragment.getClass() != PrestamistaCliente.class) {
+                RegisterViewModel rbm = (RegisterViewModel) mListener.getBaseModel();
+                mListener.onCallIntentWithData(MainActivity.class, rbm);
+            } else {
+                getFragmentManager().popBackStackImmediate();
+            }
         }
     }
 
