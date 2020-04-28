@@ -48,7 +48,7 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void onCallFragmentKey(BaseFragment old_frg, int key, BaseFragment frg, String title) {
         currentFrag = frg;
-        old_frg.title = getSupportActionBar().getTitle().toString();
+        old_frg.title = old_frg.title != null ? old_frg.title : getSupportActionBar().getTitle().toString();
         currentFrag.prev_Fragment = old_frg;
         getSupportFragmentManager().beginTransaction().replace(key,frg)
 //                .hide(old_frg)
@@ -130,6 +130,12 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     public void onDataTodosFound(List<Object> objs, BaseFragment listener) {
         listener.receiveDataTodos(objs);
     }
+
+    @Override
+    public void onDataTodosOrdenadosFound(List<Object> objs, BaseFragment listener) {
+        listener.receiveDataTodosOrdenados(objs);
+    }
+
 
     @Override
     public void onCallIntent(Class clase) {

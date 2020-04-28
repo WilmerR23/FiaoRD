@@ -24,9 +24,13 @@ import com.example.fiaoRDITSC.Utility.MyEditTextDatePicker;
 import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class RealizarPago extends BaseFragment implements View.OnClickListener, OnEditTextDatePicker {
 
@@ -111,9 +115,28 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
     public void realizarPago() {
         int montoPagado = Integer.parseInt(txtMontoPago.getText().toString());
 
+        int nuevoTotalPagado = Integer.parseInt(txtTotalPagado.getText().toString()) + montoPagado;
+        int deudaActual = Integer.parseInt(montoADeber.getText().toString()) - montoPagado;
+
+
+        Calendar calendar = Calendar.getInstance(Locale.getDefault());
+        calendar.add(Calendar.HOUR, -4);
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        String tiempo = formatter.format(calendar.getTime());
+
+        SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date fecha = null;
+        try {
+            fecha =format2.parse(fechaPago.getText().toString() + " " + tiempo);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         RealizarPagoViewModel vm = new RealizarPagoViewModel(
                 montoPagado,
-                fechaPago.getText().toString()
+                fecha.getTime(),
+                "Restar a deuda",
+                deudaActual
         );
 
 
@@ -121,9 +144,6 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
         lista.add("MovimientosPrestamos");
         lista.add(crear_prestamo_vm.getId());
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        String tiempo = formatter.format(calendar.getTime());
         vm.setId("MP_" + tiempo);
 
         String cadena = _Firebase.SaveBaseModelPush(vm, lista, "");
@@ -134,7 +154,6 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
             key = HomeFragment.model.getId();
         }
 
-        int nuevoTotalPagado = Integer.parseInt(txtTotalPagado.getText().toString()) + montoPagado;
         ArrayList<String> listaPrestamos = new ArrayList<String>();
         listaPrestamos.add("Prestamos");
         listaPrestamos.add(key);
@@ -148,6 +167,15 @@ public class RealizarPago extends BaseFragment implements View.OnClickListener, 
                         "Cancelar"),
                 null);
 
+        clearValues();
+        txtTotalPagado.setText(String.format(Locale.getDefault(),"%d",Math.abs(Integer.parseInt(montoTotal.getText().toString()) - deudaActual)));
+        montoADeber.setText(String.format(Locale.getDefault(),"%d",deudaActual));
+
+    }
+
+    public void clearValues() {
+        txtMontoPago.setText("");
+        fechaPago.setText("");
     }
 
     @Override

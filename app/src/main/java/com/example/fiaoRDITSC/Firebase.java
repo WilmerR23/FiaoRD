@@ -97,6 +97,41 @@ public class Firebase {
         });
     }
 
+    public void ObtenerTodosOrdenados(ArrayList<String> lista, final Class clase, String child, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
+
+        DatabaseReference dref = getInstance();
+
+        for(int x = 0; x < lista.size(); x++) {
+            dref = dref.child(lista.get(x));
+        }
+
+        Query query = dref;
+
+        //query.orderByChild(child);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<Object> lista = new ArrayList<Object>();
+
+                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                        BaseModel vm = (BaseModel) postSnapshot.getValue(clase);
+                        String key = postSnapshot.getKey();
+                        vm.setId(key);
+                        lista.add(vm);
+                    }
+                    dataFound.onDataTodosOrdenadosFound(lista,listener);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String error = databaseError.getMessage();
+            }
+        });
+    }
+
     public void ObtenerTodos(ArrayList<String> lista, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
 
         DatabaseReference dref = getInstance();

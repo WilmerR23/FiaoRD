@@ -46,7 +46,7 @@ public class VerMovimientos  extends BaseFragment implements OnListViewListener 
         ArrayList lista = new ArrayList<String>();
         lista.add("MovimientosPrestamos");
         lista.add(VerPrestamos.vm.getId());
-        _Firebase.ObtenerTodos(lista, RealizarPagoViewModel.class,mListener,this);
+        _Firebase.ObtenerTodosOrdenados(lista, RealizarPagoViewModel.class,"fechaPago",mListener,this);
 
         return view;
     }
@@ -59,8 +59,29 @@ public class VerMovimientos  extends BaseFragment implements OnListViewListener 
     }
 
     @Override
-    public void receiveDataTodos(List<Object> obj) {
+    public void receiveDataTodosOrdenados(List<Object> obj) {
+
+        obj = orderData(obj);
+
         refreshListView(obj);
+    }
+
+    public List<Object> orderData(List<Object> obj) {
+     for (int x = 0; x < obj.size() - 1; x++) {
+
+         for (int c = 0; c < obj.size() - 1 - x; c++) {
+
+             RealizarPagoViewModel vm = (RealizarPagoViewModel) obj.get(c);
+             RealizarPagoViewModel vm2 = (RealizarPagoViewModel) obj.get(c+1);
+             RealizarPagoViewModel aux;
+             if (vm2.getFechaPago() > vm.getFechaPago()) {
+                 aux = vm2;
+                 obj.set(c+1,vm);
+                 obj.set(c,aux);
+             }
+         }
+     }
+        return obj;
     }
 
     public void refreshListView(List<Object> obj) {

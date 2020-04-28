@@ -45,6 +45,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
         ArrayList lista = new ArrayList<String>();
         lista.add("Prestamos");
+
         if (HomeFragment.key != null) {
             lista.add(HomeFragment.key);
         } else {
@@ -75,7 +76,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
             lista.add(vm);
             labels.add(vm.getDescripcion());
         }
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,true, false, R.layout.row_list_view_edit,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,true, true, R.layout.row_list_view_edit,this);
         list_view.setAdapter(adapter);
     }
 
@@ -88,7 +89,8 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
 
     @Override
     public void OnDelete(int itemSelected) {
-
+        vm = lista.get(itemSelected);
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,CrearPrestamo.newInstance(),"Editar prestamo");
     }
 
     @Override

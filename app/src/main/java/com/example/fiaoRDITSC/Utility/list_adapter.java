@@ -68,10 +68,10 @@ public class list_adapter extends ArrayAdapter<String>  {
         }
 
         holder.textoContenido.setText(labels.get(position));
-        if (position == 1) {
-            LinearLayout ll = rowView.findViewById(R.id.RelativeLayout1);
-            ll.setBackgroundColor(Color.parseColor("#33FF0000"));
-        }
+//        if (position == 1) {
+//            LinearLayout ll = rowView.findViewById(R.id.RelativeLayout1);
+//            ll.setBackgroundColor(Color.parseColor("#33FF0000"));
+//        }
 
         holder.textoContenido.setOnClickListener(new View.OnClickListener() {
             @Override

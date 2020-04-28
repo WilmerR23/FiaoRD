@@ -32,4 +32,6 @@ public interface OnFragmentInteractionListener {
     Menu getMenu();
     BaseFragment getCurrentFragment();
 
+    void onDataTodosOrdenadosFound(List<Object> objs, BaseFragment listener);
+
 }

@@ -43,6 +43,8 @@ public abstract class BaseFragment extends Fragment {
     public void receiveChildrenCount(int count) {}
     public void receiveData(Object obj) {}
     public void receiveDataTodos(List<Object> obj) {}
+    public void receiveDataTodosOrdenados(List<Object> obj) {}
+
 
     public void receiveObtenerPorFiltroData(Object obj) {}
 

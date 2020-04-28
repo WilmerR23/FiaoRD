@@ -122,7 +122,7 @@ public class CrearPrestamoViewModel extends BaseModel {
         return "Monto: " +
                 getMonto() +
                 " Fecha Inicio: " +
-                getFechaInicio().substring(0,getFechaInicio().length() - 9) +
+                getFechaInicio() +
                 " Fecha fin: " +
                 getFechaFin();
     }

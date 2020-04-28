@@ -16,6 +16,8 @@ import com.example.fiaoRDITSC.ui.PrestamistaCliente.PrestamistaCliente;
 import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamo;
+import com.example.fiaoRDITSC.ui.movimientos.VerMovimientos;
+import com.example.fiaoRDITSC.ui.movimientos.VerPrestamos;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -111,12 +113,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Class cs = getCurrentFragment().getClass();
-        if ((cs == ClienteFragment.class || cs == CrearPrestamo.class) && HomeFragment.isColmadero) {
+        BaseFragment bF = getCurrentFragment();
+
+        if ((cs == ClienteFragment.class || VerPrestamos.vm == null) && HomeFragment.isColmadero) {
             this.onCallFragmentKey(getCurrentFragment(),R.id.nav_host_fragment,HomeFragment.newInstance(),"Clientes");
         } else if (cs == HomeFragment.class || !HomeFragment.isColmadero) {
             finish();
         } else {
-            BaseFragment bF = getCurrentFragment();
             getSupportActionBar().setTitle(bF.prev_Fragment.title);
             setCurrentFragment(bF.prev_Fragment);
             super.onBackPressed();

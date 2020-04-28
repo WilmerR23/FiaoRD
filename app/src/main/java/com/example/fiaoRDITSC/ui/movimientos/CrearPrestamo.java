@@ -40,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class CrearPrestamo extends BaseFragment implements View.OnClickListener,OnEditTextDatePicker, AdapterView.OnItemSelectedListener {
 
@@ -96,10 +97,43 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
                 android.R.layout.simple_spinner_item, itemList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(Adapter.NO_SELECTION, true);
+        if (VerPrestamos.vm != null) {
+            int pos = findSpinnerItem(VerPrestamos.vm.getTipoPago(),itemList);
+            spinner.setSelection(pos, true);
+
+            setEditMode();
+
+        } else {
+            spinner.setSelection(Adapter.NO_SELECTION, true);
+        }
         spinner.setOnItemSelectedListener(this);
 
+
+
         return view;
+    }
+
+    public void setEditMode() {
+
+        monto.setText(String.format(Locale.getDefault(),"%d",VerPrestamos.vm.getMonto()));
+        interes.setText(String.format(Locale.getDefault(),"%d",VerPrestamos.vm.getInteres()));
+        periodos.setText(String.format(Locale.getDefault(),"%d",VerPrestamos.vm.getPeriodos()));
+        fechaFin.setText(VerPrestamos.vm.getFechaFin());
+        total.setText(String.format(Locale.getDefault(),"%d",VerPrestamos.vm.getTotal()));
+        montoCuota.setText(String.format(Locale.getDefault(),"%d",VerPrestamos.vm.getCuota()));
+        String fech = VerPrestamos.vm.getFechaInicio();
+        fechaInicio.setText(fech);
+    }
+
+    public int findSpinnerItem(
+            int key, List<StringSpinnerMap> tipoPago) {
+
+        for (int x = 0; x < tipoPago.size(); x++) {
+            if (tipoPago.get(x).key == key) {
+                return x;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -172,7 +206,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
     public void guardarPrestamo() {
          CrearPrestamoViewModel vm = new CrearPrestamoViewModel(
                 Integer.parseInt(monto.getText().toString()),
-                 Integer.parseInt(interes.getText().toString()),
+                 interes.getText().toString().length() > 0 ? Integer.parseInt(interes.getText().toString()) : 0,
                  Integer.parseInt(periodos.getText().toString()),
                  TipoPago,
                  fechaInicio.getText().toString(),
@@ -187,25 +221,65 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
         lista.add("Prestamos");
         String key = HomeFragment.key;
         lista.add(key);
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        String tiempo = formatter.format(calendar.getTime());
-        lista.add("F"+ vm.getFechaInicio().replaceAll("/","_") + tiempo);
-        vm.setFechaInicio(vm.getFechaInicio() + tiempo);
-        String cadena = mListener.Save(vm, lista, "");
+
+        String mensaje = null;
+
+        //Si esta editando el prestamo, generar movimiento y actualizar prestamo
+        if (VerPrestamos.vm != null) {
+            lista.add(VerPrestamos.vm.getId());
+            vm.setTotalPagado(VerPrestamos.vm.getTotalPagado());
+
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR, -4);
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String tiempo = formatter.format(calendar.getTime());
+
+            int montoPagado = Math.abs(VerPrestamos.vm.getMonto() - vm.getMonto());
+
+            if (montoPagado > 0) {
+
+
+                RealizarPagoViewModel rpVm = new RealizarPagoViewModel(
+                        montoPagado,
+                        calendar.getTimeInMillis(),
+                        "Añadir a deuda",
+                        Math.abs(vm.getMonto() - vm.getTotalPagado())
+                );
+
+                ArrayList<String> listaMovimientos = new ArrayList<String>();
+                listaMovimientos.add("MovimientosPrestamos");
+                listaMovimientos.add(VerPrestamos.vm.getId());
+
+                rpVm.setId("MP_" + tiempo);
+
+                _Firebase.SaveBaseModelPush(rpVm, listaMovimientos, "");
+            }
+            mensaje = "Prestamo actualizado con exito. Pulse aceptar para ver el prestamo";
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String tiempo = formatter.format(calendar.getTime());
+
+            lista.add("F" + vm.getFechaInicio().replaceAll("/", "_") + tiempo);
+            vm.setFechaInicio(vm.getFechaInicio() + tiempo);
+            mensaje = "Prestamo registrado con exito. Pulse aceptar para ver el prestamo";
+        }
+
+        mListener.Save(vm, lista, "");
 
         mListener.onMakeDialog(this,
                 new MessageDialog("Importante",
-                        "Prestamo registrado con exito. Pulse aceptar para ver el prestamo",
+                        mensaje,
                                  "Aceptar",
                         "Cancelar"),
                 null);
 
+        clearValues();
     }
 
     @Override
     public void DialogPositiveCallback(Object parameter) {
-        clearValues();
             mListener.onCallFragmentKey(this,R.id.nav_host_fragment, VerPrestamos.newInstance(),"Prestamos");
     }
 
@@ -222,14 +296,13 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
     public boolean validarDatos() {
         return
                 monto.getText().toString().length() > 0 &&
-                interes.getText().toString().length() > 0 &&
                 periodos.getText().toString().length() > 0 &&
                 fechaFin.getText().toString().length() > 0
         ;
     }
 
     public void calcularPrestamo() {
-            double interesValue = Double.parseDouble(interes.getText().toString());
+            double interesValue = interes.getText().toString().length() > 0 ? Double.parseDouble(interes.getText().toString()) : 0;
             int montoValue = Integer.parseInt(monto.getText().toString());
             double totalInteres = (interesValue / 100) * montoValue;
             int MontoTotal = (int) (montoValue + totalInteres);
