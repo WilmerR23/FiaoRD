@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fiaoRDITSC.Firebase;
 import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
+import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,5 +59,7 @@ public abstract class BaseFragment extends Fragment {
     public void onErrorMessage(String errorMessage) {
         mListener.onMakeToast(errorMessage, Toast.LENGTH_LONG);
     }
+
+    public void receiveDataTodosPorFiltro(List<Object> obj, boolean ultimaIteraccion, PrestamistaColmaderoCodigoViewModel currentIterator) {}
 
 }

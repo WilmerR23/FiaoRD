@@ -22,10 +22,10 @@ public class list_adapter extends ArrayAdapter<String>  {
     private Context context;
     private ArrayList<String> labels;
     private OnListViewListener _Listener;
-    private boolean _show_right_button, _show_left_button;
+    private boolean _show_right_button, _show_left_button,_showBackGroundColor;
     private int _layout;
 
-    public list_adapter(Context context, ArrayList<String> labels, boolean show_left_button,boolean show_right_button, int layout, OnListViewListener Listener) {
+    public list_adapter(Context context, ArrayList<String> labels, boolean show_left_button,boolean show_right_button, boolean showBackGroundColor, int layout, OnListViewListener Listener) {
         super(context, R.layout.row_list_view, labels);
         this.context = context;
         this.labels = labels;
@@ -33,6 +33,7 @@ public class list_adapter extends ArrayAdapter<String>  {
         this._show_right_button = show_right_button;
         this._show_left_button = show_left_button;
         this._layout = layout;
+        this._showBackGroundColor = showBackGroundColor;
     }
 
     static class ViewHolder {
@@ -53,12 +54,15 @@ public class list_adapter extends ArrayAdapter<String>  {
             holder = new ViewHolder();
             holder.textoContenido = (TextView) rowView.findViewById(R.id.textView1);
 
-            if (_show_left_button) {
-                holder.btnLeft = (ImageButton) rowView.findViewById(R.id.imageButton1);
+            holder.btnLeft = (ImageButton) rowView.findViewById(R.id.imageButton1);
+            holder.btnRight = (ImageButton) rowView.findViewById(R.id.imageButton2);
+
+            if (!_show_left_button && holder.btnLeft != null) {
+                holder.btnLeft.setVisibility(View.GONE);
             }
 
-            if (_show_right_button) {
-            holder.btnRight = (ImageButton) rowView.findViewById(R.id.imageButton2);
+            if (!_show_right_button && holder.btnRight != null) {
+            holder.btnRight.setVisibility(View.GONE);
             }
 
 
@@ -68,10 +72,12 @@ public class list_adapter extends ArrayAdapter<String>  {
         }
 
         holder.textoContenido.setText(labels.get(position));
-//        if (position == 1) {
-//            LinearLayout ll = rowView.findViewById(R.id.RelativeLayout1);
-//            ll.setBackgroundColor(Color.parseColor("#33FF0000"));
-//        }
+
+        if (_showBackGroundColor) {
+           String color = _Listener.ToggleBackGroundColor(position);
+           LinearLayout ll = rowView.findViewById(R.id.RelativeLayout1);
+            ll.setBackgroundColor(Color.parseColor(color));
+        }
 
         holder.textoContenido.setOnClickListener(new View.OnClickListener() {
             @Override

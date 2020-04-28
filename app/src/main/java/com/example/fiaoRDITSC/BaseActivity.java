@@ -16,6 +16,7 @@ import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -134,6 +135,11 @@ public class BaseActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void onDataTodosOrdenadosFound(List<Object> objs, BaseFragment listener) {
         listener.receiveDataTodosOrdenados(objs);
+    }
+
+    @Override
+    public void onDataTodosPorFiltroFound(List<Object> objs, BaseFragment listener, boolean ultimaIteraccion, PrestamistaColmaderoCodigoViewModel currentIterator) {
+        listener.receiveDataTodosPorFiltro(objs,ultimaIteraccion,currentIterator);
     }
 
 

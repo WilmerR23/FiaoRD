@@ -91,7 +91,7 @@ public class VerMovimientos  extends BaseFragment implements OnListViewListener 
             labels.add(vm.getDescripcion());
         }
 
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,false,false, R.layout.row_list_view_default,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,false,false, false,R.layout.row_list_view_default,this);
         list_view.setAdapter(adapter);
     }
 
@@ -110,5 +110,10 @@ public class VerMovimientos  extends BaseFragment implements OnListViewListener 
     @Override
     public void OnSelect(int itemSelected) {
 
+    }
+
+    @Override
+    public String ToggleBackGroundColor(int position) {
+        return null;
     }
 }

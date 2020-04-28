@@ -31,6 +31,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
     private ArrayList<String> labels;
     private List<CrearPrestamoViewModel> lista;
     public static CrearPrestamoViewModel vm;
+    private boolean showBtnAñadirMontoPrestamo;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -38,6 +39,7 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
         if (container != null) {
             container.removeAllViews();
         }
+        showBtnAñadirMontoPrestamo = HomeFragment.isColmadero;
 
         view = inflater.inflate(R.layout.fragment_ver_prestamos, container, false);
 
@@ -76,26 +78,32 @@ public class VerPrestamos extends BaseFragment implements OnListViewListener {
             lista.add(vm);
             labels.add(vm.getDescripcion());
         }
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,true, true, R.layout.row_list_view_edit,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,showBtnAñadirMontoPrestamo, true,false,R.layout.row_list_view_edit,this);
         list_view.setAdapter(adapter);
     }
 
 
     @Override
     public void OnAdd(int itemSelectec) {
-            vm = lista.get(itemSelectec);
-            mListener.onCallFragmentKey(this,R.id.nav_host_fragment,RealizarPago.newInstance(),"Realizar Pago");
+        vm = lista.get(itemSelectec);
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,CrearPrestamo.newInstance(),"Editar prestamo");
     }
 
     @Override
     public void OnDelete(int itemSelected) {
         vm = lista.get(itemSelected);
-        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,CrearPrestamo.newInstance(),"Editar prestamo");
+        String titulo = showBtnAñadirMontoPrestamo ? "Realizar Pago" : "Prestamo";
+        mListener.onCallFragmentKey(this,R.id.nav_host_fragment,RealizarPago.newInstance(),titulo);
     }
 
     @Override
     public void OnSelect(int itemSelected) {
         vm = lista.get(itemSelected);
         mListener.onCallFragmentKey(this,R.id.nav_host_fragment,VerMovimientos.newInstance(),"Movimientos");
+    }
+
+    @Override
+    public String ToggleBackGroundColor(int position) {
+        return null;
     }
 }

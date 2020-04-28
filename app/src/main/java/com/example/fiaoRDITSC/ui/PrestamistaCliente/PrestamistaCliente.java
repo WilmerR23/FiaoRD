@@ -79,7 +79,7 @@ public class PrestamistaCliente extends BaseFragment implements OnListViewListen
             labels.add(vm.getPrestamista());
         }
 
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,false,false, R.layout.row_list_view_default,this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels,false,false, false, R.layout.row_list_view_default,this);
         list_view.setAdapter(adapter);
     }
 
@@ -96,5 +96,10 @@ public class PrestamistaCliente extends BaseFragment implements OnListViewListen
     @Override
     public void OnSelect(int itemSelected) {
 
+    }
+
+    @Override
+    public String ToggleBackGroundColor(int position) {
+        return null;
     }
 }

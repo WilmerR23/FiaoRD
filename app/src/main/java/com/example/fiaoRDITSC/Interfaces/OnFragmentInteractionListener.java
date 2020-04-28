@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.Utility.MessageDialog;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +34,6 @@ public interface OnFragmentInteractionListener {
     BaseFragment getCurrentFragment();
 
     void onDataTodosOrdenadosFound(List<Object> objs, BaseFragment listener);
+    void onDataTodosPorFiltroFound(List<Object> objs, BaseFragment listener,boolean ultimaIteraccion, PrestamistaColmaderoCodigoViewModel currentIterator);
 
 }

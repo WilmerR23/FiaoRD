@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
             >
-              <!--  <Button
+               <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Atrasados"
@@ -38,9 +38,9 @@
                     android:textColor="#FFFFFF"
                     android:id="@+id/btnAtrasados"
                     android:layout_weight="2"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    /> -->
+                   android:layout_marginStart="24dp"
+                   android:layout_marginLeft="24dp"
+                    />
 
             <Button
                 android:id="@+id/btnBuscarCliente"

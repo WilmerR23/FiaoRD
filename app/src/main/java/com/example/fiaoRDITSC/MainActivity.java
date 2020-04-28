@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity {
 
         if ((cs == ClienteFragment.class || VerPrestamos.vm == null) && HomeFragment.isColmadero) {
             this.onCallFragmentKey(getCurrentFragment(),R.id.nav_host_fragment,HomeFragment.newInstance(),"Clientes");
-        } else if (cs == HomeFragment.class || !HomeFragment.isColmadero) {
+        } else if (cs == HomeFragment.class || (cs == ClienteFragment.class && !HomeFragment.isColmadero)) {
             finish();
         } else {
             getSupportActionBar().setTitle(bF.prev_Fragment.title);

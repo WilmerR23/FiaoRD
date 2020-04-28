@@ -71,31 +71,17 @@
         app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" /> -->
 
     <TextView
-        android:id="@+id/txtRegistrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:text="No tienes usuario?"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtRegistrateAqui"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" />
-
-    <TextView
         android:id="@+id/txtRegistrateAqui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Registrate aqui"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/txtRegistrate"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciaSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="228dp" />
 
     <Button
         android:id="@+id/btnIniciaSesion"

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import com.example.fiaoRDITSC.Interfaces.OnFragmentInteractionListener;
 import com.example.fiaoRDITSC.Models.BaseModel;
 import com.example.fiaoRDITSC.ui.BaseFragment;
+import com.example.fiaoRDITSC.ui.PrestamistaColmaderoCodigo.PrestamistaColmaderoCodigoViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -261,7 +262,7 @@ public class Firebase {
         });
     }
 
-    public void ObtenerTodosPorFiltro(ArrayList<String> lista,String key, String value, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener) {
+    public void ObtenerTodosPorFiltro(ArrayList<String> lista, String key, String value, final Class clase, final OnFragmentInteractionListener dataFound, final BaseFragment listener, final boolean ultimaIteraccion, final PrestamistaColmaderoCodigoViewModel currentIterator) {
 
         DatabaseReference dref = getInstance();
 
@@ -269,20 +270,18 @@ public class Firebase {
             dref = dref.child(lista.get(x));
         }
 
-        final Query query = dref;//.orderByChild(key).startAt(value);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        final Query query = dref.orderByChild(key).equalTo(value);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 List<Object> lista = new ArrayList<Object>();
                 if (dataSnapshot.exists()) {
-                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         lista.add(postSnapshot.getValue(clase));
                     }
-                    dataFound.onDataTodosFound(lista,listener);
-                } else {
-                    dataFound.onDataTodosFound(lista,listener);
                 }
+                dataFound.onDataTodosPorFiltroFound(lista,listener,ultimaIteraccion, currentIterator);
                 query.removeEventListener(this);
             }
 

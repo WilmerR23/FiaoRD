@@ -213,6 +213,7 @@ public class CrearPrestamo extends BaseFragment implements View.OnClickListener,
                  fechaFin.getText().toString(),
                  Integer.parseInt(total.getText().toString()),
                  0,
+                 LoginFragment.UserVm.getNombre() + " " + LoginFragment.UserVm.getApellido(),
                  LoginFragment.id,
                  Integer.parseInt(montoCuota.getText().toString())
          );

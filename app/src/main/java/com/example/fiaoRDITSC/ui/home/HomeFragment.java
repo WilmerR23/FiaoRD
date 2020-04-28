@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,14 @@ import com.example.fiaoRDITSC.ui.Utility;
 import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
 import com.example.fiaoRDITSC.ui.login.LoginFragment;
 import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamo;
+import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamoViewModel;
 import com.example.fiaoRDITSC.ui.movimientos.VerPrestamos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HomeFragment extends BaseFragment implements OnListViewListener, View.OnClickListener {
@@ -39,13 +45,15 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     private List<Object> registros;
     private ListView list_view;
     private List<PrestamistaColmaderoCodigoViewModel> prestamistaClientesList;
-    private Button btnBuscarCliente;
+    private Button btnBuscarCliente, btnAtrasados;
     private EditText etNombreCliente;
     private View root;
     private ConstraintLayout home;
     public static String key;
     public static boolean isColmadero;
     public static PrestamistaColmaderoCodigoViewModel model;
+    private PrestamistaColmaderoCodigoViewModel currentIterator;
+    private List<Object> listaCliente;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -74,6 +82,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
         home.setVisibility(View.VISIBLE);
         list_view = (ListView) root.findViewById(R.id.clientesLv);
         btnBuscarCliente = root.findViewById(R.id.btnBuscarCliente);
+        btnAtrasados = root.findViewById(R.id.btnAtrasados);
         etNombreCliente = root.findViewById(R.id.etNombreCliente);
         labels = new ArrayList<String>();
         registros = new ArrayList<>();
@@ -83,7 +92,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
         lista.add(LoginFragment.id);
 
         btnBuscarCliente.setOnClickListener(this);
-        //  list_view.setOnItemClickListener(this);
+        btnAtrasados.setOnClickListener(this);
         etNombreCliente.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -136,7 +145,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
             labels.add(vm.getDescripcion());
         }
 
-        list_adapter adapter = new list_adapter(this.getActivityContext(), labels, true,true,R.layout.row_list_view, this);
+        list_adapter adapter = new list_adapter(this.getActivityContext(), labels, true,true,false,R.layout.row_list_view, this);
         list_view.setAdapter(adapter);
     }
 
@@ -185,6 +194,13 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
     }
 
     @Override
+    public String ToggleBackGroundColor(int position) {
+//        CrearPrestamoViewModel cpvm = prestamistaClientesList.get(position);
+            String color = "#33FF0000";
+        return color;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnBuscarCliente:
@@ -205,6 +221,59 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
                     mListener.onMakeToast("El filtro por nombre se encuentra vacio",Toast.LENGTH_LONG);
                 }
                 break;
+            case R.id.btnAtrasados:
+                buscarClientesAtrasados();
+                break;
         }
     }
+
+    public void buscarClientesAtrasados() {
+
+        listaCliente = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<>();
+
+            for(int x = 0; x < prestamistaClientesList.size(); x++) {
+                lista.add("Prestamos");
+                currentIterator = prestamistaClientesList.get(x);
+                String id = prestamistaClientesList.get(x).getId();
+                lista.add(id);
+
+                boolean ultimaIteraccion = (prestamistaClientesList.size() - 1) == x;
+               _Firebase.ObtenerTodosPorFiltro(lista,"prestamista", LoginFragment.id,CrearPrestamoViewModel.class,mListener,this,ultimaIteraccion, currentIterator);
+               lista = new ArrayList<>();
+            }
+    }
+
+    @Override
+    public void receiveDataTodosPorFiltro(List<Object> obj, boolean ultimaIteraccion, PrestamistaColmaderoCodigoViewModel currentIterator) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        for (int x = 0; x < obj.size(); x++){
+                CrearPrestamoViewModel cpvm = (CrearPrestamoViewModel) obj.get(x);
+                int montoADeber = cpvm.getTotal() - cpvm.getTotalPagado();
+                if (montoADeber > 0) {
+                    Date fechaInicio = format.parse(cpvm.getFechaInicio());
+                    Date fechaActual = new Date();
+                    long diff = fechaActual.getTime() - fechaInicio.getTime();
+                    long dias = diff / (24 * 60 * 60 * 1000);
+
+                    int cantidadPeriodosPasados = (int) dias / cpvm.getTipoPago();
+                    int cantidadTotalPagadoSegunFechaActual = cantidadPeriodosPasados * cpvm.getCuota();
+
+                    if (cantidadTotalPagadoSegunFechaActual > cpvm.getTotalPagado()) {
+                        listaCliente.add(currentIterator);
+                        break;
+                    }
+                }
+        }
+
+        if (ultimaIteraccion) {
+            refreshListView(listaCliente);
+        }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
