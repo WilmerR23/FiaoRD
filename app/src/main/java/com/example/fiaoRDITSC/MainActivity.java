@@ -2,6 +2,7 @@ package com.example.fiaoRDITSC;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.fiaoRDITSC.ui.BaseFragment;
 import com.example.fiaoRDITSC.ui.PrestamistaCliente.PrestamistaCliente;
 import com.example.fiaoRDITSC.ui.cliente.ClienteFragment;
 import com.example.fiaoRDITSC.ui.home.HomeFragment;
+import com.example.fiaoRDITSC.ui.login.LoginFragment;
 import com.example.fiaoRDITSC.ui.movimientos.CrearPrestamo;
 import com.example.fiaoRDITSC.ui.movimientos.VerMovimientos;
 import com.example.fiaoRDITSC.ui.movimientos.VerPrestamos;
@@ -98,6 +100,17 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.cerrarSesion:
+                HomeFragment.key = null;
+                HomeFragment.model = null;
+                VerPrestamos.vm = null;
+                VerMovimientos.vm = null;
+                LoginFragment.id = null;
+                LoginFragment.UserVm = null;
+                LoginFragment.cad = null;
+                LoginFragment.Descripcion = null;
+                LoginFragment.NombreUsuario = null;
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }

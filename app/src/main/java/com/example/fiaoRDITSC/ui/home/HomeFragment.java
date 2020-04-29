@@ -222,6 +222,7 @@ public class HomeFragment extends BaseFragment implements OnListViewListener, Vi
                 }
                 break;
             case R.id.btnAtrasados:
+                etNombreCliente.setText("");
                 buscarClientesAtrasados();
                 break;
         }
